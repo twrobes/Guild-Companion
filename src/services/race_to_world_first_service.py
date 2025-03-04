@@ -28,7 +28,7 @@ BOSS_URL_LIST = [
     'https://i.imgur.com/ST1mtIs.png',
     'https://i.imgur.com/jSp3TfY.png'
 ]
-CURRENT_RAID_SLUG = 'nerubar-palace'
+CURRENT_RAID_SLUG = 'liberation-of-undermine'
 
 
 async def retrieve_race_update(rwf_channel):

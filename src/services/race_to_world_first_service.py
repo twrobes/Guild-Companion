@@ -19,17 +19,14 @@ BOSS_SLUG_LIST = [
 ]
 # These are in the same order is BOSS_SLUG_LIST
 BOSS_URL_LIST = [
-    # VEXIE PLACEHOLDER
-    'https://wow.zamimg.com/uploads/screenshots/normal/1199532.jpg',
-    'https://i.ytimg.com/vi/pswYHwWmINo/hqdefault.jpg',
-    # RIK REVERB PLACEHOLDER
-    'https://wow.zamimg.com/uploads/screenshots/normal/1199532.jpg',
+    'https://i.imgur.com/JXqYlMx.png',
+    'https://i.ytimg.com/vi/pswYHwWmINo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBPObjthefR6dk2YFy8iv5RtzW3Qg',
+    'https://i.imgur.com/yp4M6uk.png',
     'https://i.ytimg.com/vi/GrHCt1dPeTg/maxresdefault.jpg',
     'https://i.ytimg.com/vi/gmWWZIQFw0U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDxfpZRtd0W4t0hFjfHhNZMazvk-Q',
     'https://i.ytimg.com/vi/jMGS3Cm-V3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD9CXc3VxVyXS94dZV2L3K_SKKsyg',
-    # MUG'ZEE PLACEHOLDER
-    'https://wow.zamimg.com/uploads/screenshots/normal/1199532.jpg',
-    'https://blizzardwatch.com/wp-content/uploads/2024/11/Gallywix-Robot.png'
+    'https://i.imgur.com/ST1mtIs.png',
+    'https://i.imgur.com/jSp3TfY.png'
 ]
 CURRENT_RAID_SLUG = 'nerubar-palace'
 

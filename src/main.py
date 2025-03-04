@@ -13,7 +13,6 @@ from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, A
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 
 ATROCIOUS_SERVER_ID = 699611111066042409
-JEVAN_ID = 139046493649764352
 DATE_FORMAT = '%Y-%m-%d'
 
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')

@@ -43,7 +43,7 @@ async def retrieve_race_update(rwf_channel):
 
         if response.ok and boss_rankings is not None and len(boss_rankings) != 0:
             update_dict: dict | None = await get_update_dict(BOSS_SLUG_LIST[boss_idx], boss_rankings['bossRankings'])
-        elif boss_rankings.json is None:
+        elif boss_rankings.json() is None:
             logging.error(f'JSON response was none. JSON content: {boss_rankings}')
         elif 400 <= response.status < 500:
             logging.error(f'Page or content was not found. Status code: {response.status}')

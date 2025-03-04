@@ -54,7 +54,6 @@ class Admin(commands.GroupCog, name='admin'):
     @tasks.loop(seconds=60)
     async def rwf_tracker(self):
         rwf_channel = self.bot.get_channel(RWF_CHANNEL_ID)
-        print(rwf_channel)
         await retrieve_race_update(rwf_channel)
 
 

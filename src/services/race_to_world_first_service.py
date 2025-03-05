@@ -7,7 +7,6 @@ import discord
 
 from env import POSTGRESQL_SECRET
 
-BOSS_KILL_AMOUNT_LIMIT = 50
 BOSS_SLUG_LIST = [
     'vexie-and-the-geargrinders',
     'cauldron-of-carnage',
@@ -92,9 +91,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty):
         logging.error(f'The database transaction to retrieve {boss_slug} boss record had an error: {e}')
         return None
 
-    if boss_kills >= BOSS_KILL_AMOUNT_LIMIT:
-        return None
-    elif len(boss_rankings_json) == 0:
+    if len(boss_rankings_json) == 0:
         return None
     elif len(boss_rankings_json) <= boss_kills:
         return None
@@ -120,6 +117,9 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty):
         guild_image_url = target_rank['guild']['logo']
     except KeyError:
         guild_image_url = None
+
+    if difficulty == 'heroic' and boss_slug != 'chrome-king-gallywix':
+        return None
 
     return {
         "boss_name": boss_slug.replace("-", " ").title(),

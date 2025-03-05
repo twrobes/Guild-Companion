@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 
 import aiohttp
 import asyncpg
@@ -65,7 +66,9 @@ async def retrieve_race_update(rwf_channel):
                     color=discord.Color.dark_embed(),
                     title='Race to World First'
                 )
-                update_embed.add_field(name='**NEW KILL**', value=update_msg)
+                update_embed.add_field(name=f'**NEW {difficulty.upper()} KILL**', value=update_msg, inline=False)
+                update_embed.add_field(name=f'Time of kill', value=f'<t:{int(time.time())}:F>', inline=False)
+                update_embed.add_field(name='', value='', inline=False)
                 update_embed.set_image(url=BOSS_URL_LIST[boss_idx])
 
                 try:

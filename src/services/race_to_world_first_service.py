@@ -29,7 +29,7 @@ BOSS_URL_LIST = [
     'https://i.imgur.com/jSp3TfY.png'
 ]
 CURRENT_RAID_SLUG = 'liberation-of-undermine'
-
+BOSS_KILL_AMOUNT_LIMIT = 20
 
 async def retrieve_race_update(rwf_channel):
     update_dict = None
@@ -84,7 +84,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict):
         logging.error(f'The database transaction to retrieve {boss_slug} boss record had an error: {e}')
         return None
 
-    if boss_kills >= 5:
+    if boss_kills >= BOSS_KILL_AMOUNT_LIMIT:
         return None
     elif len(boss_rankings_json) == 0:
         return None

@@ -73,7 +73,7 @@ async def retrieve_race_update(rwf_channel):
                     if update_dict["guild_image_url"] is not None or len(update_dict["guild_image_url"]) != 0:
                         update_embed.set_thumbnail(url=update_dict["guild_image_url"])
                     else:
-                        update_embed.set_thumbnail(url='https://assets-prd.ignimgs.com/2023/11/03/warcraft1-1699040733114.jpg')
+                        update_embed.set_thumbnail(url='https://i.imgur.com/kfgdl4a.png')
                 except Exception:
                     logging.warning(f"Something went wrong with the guild image url: {update_dict['guild_image_url']}")
 

@@ -148,7 +148,7 @@ async def get_formatted_number(rank: int) -> str:
             return rank_str + 'nd'
         case '3':
             return rank_str + 'rd'
-        case '0', '4', '5', '6', '7', '8', '9':
+        case '0' | '4' | '5' | '6' | '7' | '8' | '9':
             return rank_str + 'th'
         case _:
             logging.error(f'Got an invalid value for boss rank: {rank}')

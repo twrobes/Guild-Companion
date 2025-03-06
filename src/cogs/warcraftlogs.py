@@ -33,7 +33,12 @@ class Warcraftlogs(commands.Cog):
 
         if response.ok and rank_json is not None:
             await interaction.response.send_message(
-                f'__Liberation of Undermine__\n'
+                f'__Liberation of Undermine Heroic__\n'
+                f'```World  - {rank_json["raid_rankings"]["liberation-of-undermine"]["heroic"]["world"]}\n'
+                f'Region - {rank_json["raid_rankings"]["liberation-of-undermine"]["heroic"]["region"]}\n'
+                f'Realm  - {rank_json["raid_rankings"]["liberation-of-undermine"]["heroic"]["realm"]}```\n'
+                '\n'
+                f'__Liberation of Undermine Mythic__\n'
                 f'```World  - {rank_json["raid_rankings"]["liberation-of-undermine"]["mythic"]["world"]}\n'
                 f'Region - {rank_json["raid_rankings"]["liberation-of-undermine"]["mythic"]["region"]}\n'
                 f'Realm  - {rank_json["raid_rankings"]["liberation-of-undermine"]["mythic"]["realm"]}```\n'

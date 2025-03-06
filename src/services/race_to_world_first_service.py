@@ -82,9 +82,9 @@ async def retrieve_race_update(rwf_channel):
                 await rwf_channel.send(embed=update_embed)
 
                 try:
-                    if (update_dict["guild"] == 'Liquid' or update_dict["guild"] == 'Echo' and difficulty == 'mythic'
+                    if ((update_dict["guild"] == 'Liquid' or update_dict["guild"] == 'Echo') and difficulty == 'mythic'
                             and update_dict["boss_name"] == "Chrome King Gallywix" and update_dict["rank"] == 1):
-                        rwf_channel.send(f'# **{update_dict["guild"]} HAS CLAIMED WORLD FIRST **\n@everyone')
+                        await rwf_channel.send(f'# **{update_dict["guild"]} HAS CLAIMED WORLD FIRST **\n@everyone')
                 except Exception:
                     logging.error('An exception occurred sending the world first kill message')
 

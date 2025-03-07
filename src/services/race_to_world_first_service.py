@@ -74,9 +74,8 @@ async def retrieve_race_update(rwf_channel):
                 try:
                     if update_dict["guild_image_url"] is not None or len(update_dict["guild_image_url"]) != 0:
                         update_embed.set_thumbnail(url=update_dict["guild_image_url"])
-                    else:
-                        update_embed.set_thumbnail(url='https://i.imgur.com/kfgdl4a.png')
                 except Exception:
+                    update_embed.set_thumbnail(url='https://i.imgur.com/kfgdl4a.png')
                     logging.warning(f"Something went wrong with the guild image url: {update_dict['guild_image_url']}")
 
                 await rwf_channel.send(embed=update_embed)

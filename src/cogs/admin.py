@@ -9,7 +9,7 @@ from services.race_to_world_first_service import retrieve_race_update
 from services.raider_io_service import retrieve_mythic_plus_update
 
 ADMIN_USER_ID = 104797389373599744
-MYTHIC_PLUS_CHANNEL_ID = 347861672137981954
+MYTHIC_PLUS_CHANNEL_ID = 1050059557877063681
 RWF_CHANNEL_ID = 1332825068601868380
 
 
@@ -60,7 +60,7 @@ class Admin(commands.GroupCog, name='admin'):
         name='mythic_plus_leaderboard',
         description='Starts the Mythic Plus Leaderboard tracker'
     )
-    async def start_rwf_tracker(self, interaction: discord.Interaction, action: str):
+    async def start_mythic_plus_leaderboard(self, interaction: discord.Interaction, action: str):
         if interaction.user.id != ADMIN_USER_ID:
             await interaction.response.send_message('You are not allowed to use this command', ephemeral=True)
             return
@@ -83,13 +83,9 @@ class Admin(commands.GroupCog, name='admin'):
         rwf_channel = self.bot.get_channel(RWF_CHANNEL_ID)
         await retrieve_race_update(rwf_channel)
 
-    @tasks.loop(seconds=20)
+    @tasks.loop(hours=1)
     async def mythic_plus_leaderboard_loop(self):
-        mythic_plus_channel = self.bot.get_channel(MYTHIC_PLUS_CHANNEL_ID)
-        await retrieve_mythic_plus_update(mythic_plus_channel)
-        logging.info(f'Sent an update to the mythic plus leaderboard at {datetime.now()}')
-
-        if 7 >= datetime.now().hour <= 8:
+        if 12 >= datetime.now().hour <= 13:
             mythic_plus_channel = self.bot.get_channel(MYTHIC_PLUS_CHANNEL_ID)
             await retrieve_mythic_plus_update(mythic_plus_channel)
             logging.info(f'Sent an update to the mythic plus leaderboard at {datetime.now()}')

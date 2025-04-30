@@ -12,9 +12,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image
 from io import BytesIO
 
-RAIDERIO_WIDGET_URL = ('https://raider.io/widgets/boss-progress?raid=latest&name_style=logo&difficulty=latest&'
-                       'region=us&realm=area-52&guild=Atrocious&boss=latest&period=until_kill&orientation=rect&'
-                       'hide=&chromargb=transparent&theme=dragonflight')
+RAIDERIO_WIDGET_URL = ('https://raider.io/widgets/boss-progress?raid=latest&name_style=logo&difficulty=mythic&region=us&realm=area-52&guild=Atrocious&boss=latest'
+                       '&period=until_kill&orientation=rect&hide=&chromargb=transparent&theme=dragonflight')
 
 
 class Raiderio(commands.Cog):

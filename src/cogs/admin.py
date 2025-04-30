@@ -85,7 +85,7 @@ class Admin(commands.GroupCog, name='admin'):
 
     @tasks.loop(hours=1)
     async def mythic_plus_leaderboard_loop(self):
-        if 12 >= datetime.now().hour <= 13:
+        if 12 <= datetime.now().hour <= 13:
             mythic_plus_channel = self.bot.get_channel(MYTHIC_PLUS_CHANNEL_ID)
             await retrieve_mythic_plus_update(mythic_plus_channel)
             logging.info(f'Sent an update to the mythic plus leaderboard at {datetime.now()}')

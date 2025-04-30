@@ -84,4 +84,7 @@ async def retrieve_mythic_plus_update(mythic_plus_channel):
     mythic_plus_image.save(buffer, 'png')
     buffer.seek(0)
 
-    await mythic_plus_channel.send(file=discord.File(fp=buffer, filename='mythic_plus_leaderboard_image.png'))
+    current_date = datetime.datetime.now().strftime('%m/%d/%Y')
+    message = f"# Mythic+ Top 10 Leaderboard - {current_date}"
+
+    await mythic_plus_channel.send(content=message, file=discord.File(fp=buffer, filename='mythic_plus_leaderboard_image.png'))

@@ -124,12 +124,12 @@ async def remove_past_absences():
     conn = await asyncpg.connect(
         f'postgres://avnadmin:{POSTGRESQL_SECRET}@atrocious-bot-db-atrocious-bot.l.aivencloud.com:12047/defaultdb?sslmode=require'
     )
-    current_date = datetime.datetime.now()
+    corrected_cst_datetime = datetime.datetime.now() - datetime.timedelta(hours=5)
 
     # Deletes old records from attendance table
     try:
         delete_record_query = """DELETE FROM attendance WHERE absence_date < ($1)"""
-        await conn.execute(delete_record_query, current_date)
+        await conn.execute(delete_record_query, corrected_cst_datetime)
         logging.info('Removed past absence records successfully')
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(e)
@@ -138,7 +138,7 @@ async def remove_past_absences():
     # Deletes old records from vacation table
     try:
         delete_record_query = """DELETE FROM vacation WHERE end_date < ($1)"""
-        await conn.execute(delete_record_query, current_date)
+        await conn.execute(delete_record_query, corrected_cst_datetime)
         logging.info('Removed past absence records successfully')
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(e)

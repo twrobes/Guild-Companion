@@ -130,8 +130,7 @@ class Attendance(commands.GroupCog, name='attendance'):
 
         if not attendance_records:
             await interaction.response.send_message(
-                f'You have not added an absence on {year_month_day[1]}/{year_month_day[2]}/{year_month_day[0]}. '
-                f'Please input a date with an existing absence.', ephemeral=True)
+                f'You have not added an absence on {year_month_day[1]}/{year_month_day[2]}/{year_month_day[0]}. Please input a date with an existing absence.', ephemeral=True)
             await conn.close()
             return
 

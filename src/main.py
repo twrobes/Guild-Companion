@@ -57,9 +57,9 @@ async def on_message(message):
         else:
             await message.channel.send('<:stare:1270932409428344893>')
 
-    if 'scorpion' in message.content.lower():
-        await message.channel.send("Have you heard of the hit T.V. series that aired in 2014 called Scorpion? It was a hit Workplace Drama starring Elyes Gabel,"
-                                   " Katherine McPhee, and Eddie Kaye Thomas.\nhttps://www.imdb.com/title/tt3514324/")
+    if 'kona' in message.content.lower() and 'grip' in message.content.lower():
+        await message.channel.send("https://cdn.discordapp.com/attachments/1050059557877063681/1382838661661331596"
+                                   "/konagrip.gif?ex=684c9c5c&is=684b4adc&hm=42669944c06a6b97bf64c55efd603915a35f70ac044f93e6c1e1fcc828803914&")
 
     await bot.process_commands(message)
 

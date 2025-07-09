@@ -49,6 +49,9 @@ async def on_message(message):
     if 'bruh' in message.content.lower():
         await message.channel.send('bruh')
 
+    if 'bounce on it' in message.content.lower():
+        await message.channel.send('https://i.imgur.com/LtBC4hH.gif')
+
     if bot.user in message.mentions:
         if 'hi' in message.content.lower() or 'hello' in message.content.lower() or 'hey' in message.content.lower():
             await message.channel.send('<a:hiii:1325574390431223839>')
@@ -57,7 +60,7 @@ async def on_message(message):
         else:
             await message.channel.send('<:stare:1270932409428344893>')
 
-    if 'kona' in message.content.lower() and 'grip' in message.content.lower():
+    if ('kona' in message.content.lower() or any(user.id == 123499257373261826 for user in message.mentions)) and 'grip' in message.content.lower():
         await message.channel.send("https://cdn.discordapp.com/attachments/1050059557877063681/1382838661661331596"
                                    "/konagrip.gif?ex=684c9c5c&is=684b4adc&hm=42669944c06a6b97bf64c55efd603915a35f70ac044f93e6c1e1fcc828803914&")
 

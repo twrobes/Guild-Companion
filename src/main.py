@@ -54,7 +54,7 @@ async def on_message(message):
 
     if 'bruh' in msg_lower:
         message_reaction_triggered = True
-        await message.channel.send('bruh')
+        await message.channel.send(file=discord.File('resources/bruh.gif'))
 
     if 'bounce on it' in msg_lower:
         message_reaction_triggered = True

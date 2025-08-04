@@ -14,6 +14,7 @@ from services.wow_server_status_service import get_area_52_server_status_via_api
 
 ATROCIOUS_SERVER_ID = 699611111066042409
 DATE_FORMAT = '%Y-%m-%d'
+VALID_MOONKIN_WORDS = ['kick', 'fuck', 'stair', '400', 'buff', 'nerf', 'meta']
 
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 discord.utils.setup_logging(handler=handler, level=logging.DEBUG)
@@ -40,33 +41,41 @@ async def load():
 
 @bot.event
 async def on_message(message):
+    msg_lower = message.content.lower()
+
     if message.author == bot.user:
         return
 
     message_reaction_triggered = False
 
-    if 'o7' in message.content.lower():
+    if 'o7' in msg_lower:
         message_reaction_triggered = True
         await message.channel.send('o7')
 
-    if 'bruh' in message.content.lower():
+    if 'bruh' in msg_lower:
         message_reaction_triggered = True
         await message.channel.send('bruh')
 
-    if 'bounce on it' in message.content.lower():
+    if 'bounce on it' in msg_lower:
         message_reaction_triggered = True
         await message.channel.send('https://i.imgur.com/LtBC4hH.gif')
 
-    if ('kona' in message.content.lower() or any(user.id == 123499257373261826 for user in message.mentions)) and 'grip' in message.content.lower():
+    if ('kona' in msg_lower or any(user.id == 123499257373261826 for user in message.mentions)) and 'grip' in msg_lower:
         message_reaction_triggered = True
         await message.channel.send("https://cdn.discordapp.com/attachments/1050059557877063681/1382838661661331596"
                                    "/konagrip.gif?ex=684c9c5c&is=684b4adc&hm=42669944c06a6b97bf64c55efd603915a35f70ac044f93e6c1e1fcc828803914&")
 
+    if any(word in msg_lower for word in VALID_MOONKIN_WORDS) and ('moonkin' in msg_lower or 'boomkin' in msg_lower):
+        message_reaction_triggered = True
+        await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
+
     if bot.user in message.mentions and not message_reaction_triggered:
-        if 'hi' in message.content.lower() or 'hello' in message.content.lower() or 'hey' in message.content.lower():
+        if 'hi' in msg_lower or 'hello' in msg_lower or 'hey' in msg_lower:
             await message.channel.send('<a:hiii:1325574390431223839>')
-        elif 'meowdy' in message.content.lower():
+        elif 'meowdy' in msg_lower:
             await message.channel.send('<a:meowdy:1325576796497772616>')
+        elif 'kick' in msg_lower and 'moonkin' in msg_lower or 'boomkin' in msg_lower:
+            await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
         else:
             await message.channel.send('<:stare:1270932409428344893>')
 

@@ -54,7 +54,8 @@ async def on_message(message):
 
     if 'bruh' in msg_lower:
         message_reaction_triggered = True
-        await message.channel.send(file=discord.File('resources/bruh.gif'))
+        await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402066373391417424/bruh.gif?ex=68928f90&is=68913e10&hm="
+                                   "64f169e353c4f3493a92a07d3f1810ab5f3d65bd028561fd453e3398f23c615b&")
 
     if 'bounce on it' in msg_lower:
         message_reaction_triggered = True
@@ -65,9 +66,20 @@ async def on_message(message):
         await message.channel.send("https://cdn.discordapp.com/attachments/1050059557877063681/1382838661661331596"
                                    "/konagrip.gif?ex=684c9c5c&is=684b4adc&hm=42669944c06a6b97bf64c55efd603915a35f70ac044f93e6c1e1fcc828803914&")
 
+    if 'gingi' in msg_lower:
+        message_reaction_triggered = True
+        await message.channel.send("https://media.discordapp.net/attachments/360571569791303681/989015957445943307/ezgif.com-gif-maker_4.gif?ex=689229a3&is=6890d823&hm="
+                                   "e89f14000d43fc29ae5c953a2eb1e826955fc1209410bc9c63ec07d84c0cde4c&")
+
+    if 'hopeful' in msg_lower:
+        message_reaction_triggered = True
+        await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402083668356497491/hopeful_satisfied.gif?ex=68929fab&is="
+                                   "68914e2b&hm=9804f8bba0351bcb6087c08510c7f3084afb0d66bcf74642bfd9fccfd79bf4d2&")
+
     if any(word in msg_lower for word in VALID_MOONKIN_WORDS) and ('moonkin' in msg_lower or 'boomkin' in msg_lower):
         message_reaction_triggered = True
-        await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
+        await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402083208027308122/kick_moonkin_down_stairs.png?ex="
+                                   "68929f3e&is=68914dbe&hm=ebe0785687680428b94a9511562844cafa39d78bb4cf1a0b333d0d6d897f01d2&")
 
     if bot.user in message.mentions and not message_reaction_triggered:
         if 'hi' in msg_lower or 'hello' in msg_lower or 'hey' in msg_lower:

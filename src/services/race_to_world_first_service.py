@@ -8,29 +8,32 @@ import discord
 
 from env import POSTGRESQL_SECRET
 
+BACKUP_THUMBNAIL_URL = 'https://wowvendor.com/app/uploads/2025/06/WoW-Manaforge-Omega-raid-guide.jpg'
 BOSS_SLUG_LIST = [
-    'vexie-and-the-geargrinders',
-    'cauldron-of-carnage',
-    'rik-reverb',
-    'stix-bunkjunker',
-    'sprocketmonger-lockenstock',
-    'onearmed-bandit',
-    'mugzee-heads-of-security',
-    'chrome-king-gallywix'
+    'plexus-sentinel',
+    'loomithar',
+    'soulbinder-naazindhri',
+    'forgeweaver-araz',
+    'the-soul-hunters',
+    'fractillus',
+    'nexus-king-salhadaar',
+    'dimensius'
 ]
 # These are in the same order is BOSS_SLUG_LIST
 BOSS_URL_LIST = [
-    'https://i.imgur.com/JXqYlMx.png',
-    'https://i.ytimg.com/vi/pswYHwWmINo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBPObjthefR6dk2YFy8iv5RtzW3Qg',
-    'https://i.imgur.com/yp4M6uk.png',
-    'https://i.ytimg.com/vi/GrHCt1dPeTg/maxresdefault.jpg',
-    'https://i.ytimg.com/vi/gmWWZIQFw0U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDxfpZRtd0W4t0hFjfHhNZMazvk-Q',
-    'https://i.ytimg.com/vi/jMGS3Cm-V3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD9CXc3VxVyXS94dZV2L3K_SKKsyg',
-    'https://i.imgur.com/ST1mtIs.png',
-    'https://i.imgur.com/jSp3TfY.png'
+    'https://gamingcy.com/wp-content/uploads/2025/06/Plexus-Sentinel.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Loomithar.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Soulbinder-Naazindhri.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Forgeweaver-Araz.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/The-Soul-Hunters.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Fractillus.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Nexus-King-Salhadaar.jpg',
+    'https://gamingcy.com/wp-content/uploads/2025/06/Dimensius.jpg'
 ]
-CURRENT_RAID_SLUG = 'liberation-of-undermine'
+CURRENT_RAID_SLUG = 'manaforge-omega'
+DEFAULT_GUILD_IMAGE_URL = 'https://cdn.mos.cms.futurecdn.net/ca871592becab3977c455f6daf5cd1ca.png'
 DIFFICULTY_LIST = ['mythic', 'heroic']
+KILL_LIMIT = 10
 
 
 async def retrieve_race_update(rwf_channel):
@@ -75,26 +78,25 @@ async def retrieve_race_update(rwf_channel):
                     if update_dict["guild_image_url"] is not None or len(update_dict["guild_image_url"]) != 0:
                         update_embed.set_thumbnail(url=update_dict["guild_image_url"])
                 except Exception:
-                    update_embed.set_thumbnail(url='https://i.imgur.com/kfgdl4a.png')
+                    update_embed.set_thumbnail(url=BACKUP_THUMBNAIL_URL)
                     logging.warning(f"Something went wrong with the guild image url: {update_dict['guild_image_url']}")
 
                 await rwf_channel.send(embed=update_embed)
 
                 try:
-                    if ((update_dict["guild"] == 'Liquid' or update_dict["guild"] == 'Echo') and difficulty == 'mythic'
-                            and update_dict["boss_name"] == "Chrome King Gallywix" and update_dict["rank"] == 1):
+                    if difficulty == 'mythic' and update_dict["boss_name"] == "Dimensius" and update_dict["rank"] == 1:
                         await rwf_channel.send(f'# **{update_dict["guild"]} HAS CLAIMED WORLD FIRST **\n@everyone')
                 except Exception:
                     logging.error('An exception occurred sending the world first kill message')
 
 
-async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty):
+async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: str):
     boss = difficulty + '-' + boss_slug
 
     try:
         conn = await asyncpg.connect(f'postgres://avnadmin:{POSTGRESQL_SECRET}@atrocious-bot-db-atrocious-bot.l.aivencloud.com:12047/defaultdb?sslmode=require')
-        get_record_query = """SELECT kills FROM rwf_tracker WHERE boss=($1)"""
-        result = await conn.fetch(get_record_query, boss)
+        get_record_query = """SELECT kills FROM rwf_tracker WHERE boss=($1) AND kills<=($2)"""
+        result = await conn.fetch(get_record_query, boss, KILL_LIMIT)
         boss_kills = result[0]['kills']
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(f'The database transaction to retrieve {boss_slug} boss record had an error: {e}')
@@ -125,10 +127,11 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty):
     try:
         guild_image_url = target_rank['guild']['logo']
     except KeyError:
-        guild_image_url = None
+        guild_image_url = DEFAULT_GUILD_IMAGE_URL
 
-    if difficulty == 'heroic' and boss_slug != 'chrome-king-gallywix':
-        return None
+    # Limits heroic boss notifications only for the last boss.
+    # if difficulty == 'heroic' and boss_slug != 'chrome-king-gallywix':
+    #     return None
 
     return {
         "boss_name": boss_slug.replace("-", " ").title(),

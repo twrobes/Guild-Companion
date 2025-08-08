@@ -41,6 +41,10 @@ async def retrieve_race_update(rwf_channel):
 
     for difficulty in DIFFICULTY_LIST:
         for boss_idx in range(len(BOSS_SLUG_LIST)):
+            # This conditional forces tracking of only the last two heroic bosses
+            if boss_idx <= len(BOSS_SLUG_LIST) - 3 and difficulty == 'heroic':
+                continue
+
             get_boss_rank_url = f"https://raider.io/api/v1/raiding/boss-rankings?raid={CURRENT_RAID_SLUG}&boss={BOSS_SLUG_LIST[boss_idx]}&difficulty={difficulty}&region=world"
 
             async with aiohttp.ClientSession() as session:

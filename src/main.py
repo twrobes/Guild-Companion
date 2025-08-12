@@ -136,7 +136,7 @@ async def update_bot_status():
             except (Exception, asyncpg.PostgresError) as e:
                 logging.error('An exception occurred when trying to update the server_maintenance_started column to TRUE')
 
-        start_time = time_tracking['server_maintenance_started']
+        start_time = time_tracking['server_maintenance_start_time']
         current_time = datetime.datetime.now()
         seconds_diff = int((current_time - start_time).total_seconds())
         minutes_diff = seconds_diff // 60

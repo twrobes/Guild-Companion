@@ -96,28 +96,54 @@ async def on_message(message):
 
 @tasks.loop(minutes=1)
 async def update_bot_status():
-    # await get_area_52_server_status_via_webpage()
     server_status = await get_area_52_server_status_via_api()
     guild = bot.get_guild(ATROCIOUS_SERVER_ID)
-
     channel_to_msg = bot.get_channel(ATROCIOUS_GENERAL_CHANNEL_ID)
-    # TODO: Bring back for opt-in roles
-    # raider_role_id = 699622512174301266
-    # trial_role_id = 699667525964660826
+
+    conn = await asyncpg.connect(f'postgres://avnadmin:{POSTGRESQL_SECRET}@atrocious-bot-db-atrocious-bot.l.aivencloud.com:12047/defaultdb?sslmode=require')
+    time_tracking = False
+
+    try:
+        get_record_query = """SELECT * FROM time_tracking WHERE id=1"""
+        time_tracking = await conn.fetchrow(get_record_query)
+    except (Exception, asyncpg.PostgresError) as e:
+        logging.error('An error occurred when getting the time tracking record from the db', e)
+        await conn.close()
 
     if server_status:
+        if time_tracking and time_tracking["server_maintenance_started"]:
+            try:
+                await conn.execute("""
+                        UPDATE time_tracking
+                        SET server_maintenance_started = FALSE
+                        WHERE id=1
+                    """)
+            except (Exception, asyncpg.PostgresError) as e:
+                logging.error('An exception occurred when trying to update the server_maintenance_started column to FALSE', e)
+
         status_msg = 'Area-52 is online'
     else:
-        status_msg = 'Area-52 is offline'
+        if time_tracking and not time_tracking["server_maintenance_started"]:
+            try:
+                await conn.execute("""
+                        UPDATE time_tracking
+                        SET 
+                            server_maintenance_started = TRUE,
+                            server_maintenance_start_time = $1
+                        WHERE id=1
+                    """, datetime.datetime.now())
+            except (Exception, asyncpg.PostgresError) as e:
+                logging.error('An exception occurred when trying to update the server_maintenance_started column to TRUE')
 
-    # TODO: Look into this when the server is offline
-    # is_online = await get_area_52_server_status_via_webpage()
-    #
-    # if is_online != 0:
-    #     if is_online:
-    #         status_msg = 'Area-52 is online'
-    #     else:
-    #         status_msg = 'Area-52 is offline'
+        start_time = time_tracking['server_maintenance_started']
+        current_time = datetime.datetime.now()
+        seconds_diff = int((current_time - start_time).total_seconds())
+        minutes_diff = seconds_diff // 60
+
+        if minutes_diff % 30 == 0:
+            await channel_to_msg.send(f'Servers have been offline for {minutes_diff/60} hours')
+
+        status_msg = 'Area-52 is offline'
 
     if guild.me.activity is None:
         activity = discord.CustomActivity(name=status_msg)
@@ -126,16 +152,12 @@ async def update_bot_status():
         activity = discord.CustomActivity(name=status_msg)
         await bot.change_presence(activity=activity)
 
-        # TODO: Create opt-in roles
-        # trimmed_status_msg = status_msg.split(' ')[2]
-        # await channel_to_ping.send(
-        #     f'<@&{raider_role_id}><@&{trial_role_id}> Area-52 is now {trimmed_status_msg}.'
-        # )
-
         trimmed_status_msg = status_msg.split(' ')[2]
         await channel_to_msg.send(
             f'Area-52 is now {trimmed_status_msg}.'
         )
+
+    await conn.close()
 
 
 @tasks.loop(minutes=60)

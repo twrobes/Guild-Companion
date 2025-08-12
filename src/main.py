@@ -140,7 +140,7 @@ async def update_bot_status():
         seconds_diff = int((current_time - start_time).total_seconds())
         minutes_diff = seconds_diff // 60
 
-        if minutes_diff % 30 == 0:
+        if minutes_diff != 0 and minutes_diff % 30 == 0:
             await channel_to_msg.send(f'Servers have been offline for {minutes_diff/60} hours')
 
         status_msg = 'Area-52 is offline'

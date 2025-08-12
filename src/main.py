@@ -96,6 +96,7 @@ async def on_message(message):
 
 @tasks.loop(minutes=1)
 async def update_bot_status():
+    logging.info('Checking server status...')
     server_status = await get_area_52_server_status_via_api()
     guild = bot.get_guild(ATROCIOUS_SERVER_ID)
     channel_to_msg = bot.get_channel(ATROCIOUS_GENERAL_CHANNEL_ID)
@@ -158,6 +159,7 @@ async def update_bot_status():
         )
 
     await conn.close()
+    logging.info('Server status check completed.')
 
 
 @tasks.loop(minutes=60)

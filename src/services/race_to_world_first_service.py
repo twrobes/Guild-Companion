@@ -95,6 +95,9 @@ async def retrieve_race_update(rwf_channel):
 
 
 async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: str):
+    # TODO: Remove this
+    logging.info(f'Boss Rankings JSON: \n{boss_rankings_json}')
+
     boss = difficulty + '-' + boss_slug
 
     try:
@@ -124,6 +127,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
 
     try:
         target_rank = boss_rankings_json[boss_kills - 1]
+        logging.info(f'Target Rank JSON: \n{boss_rankings_json}')
     except IndexError:
         logging.info('Tried to get an invalid index from boss_rankings_json')
         return None
@@ -132,10 +136,6 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
         guild_image_url = target_rank['guild']['logo']
     except KeyError:
         guild_image_url = DEFAULT_GUILD_IMAGE_URL
-
-    # Limits heroic boss notifications only for the last boss.
-    # if difficulty == 'heroic' and boss_slug != 'chrome-king-gallywix':
-    #     return None
 
     return {
         "boss_name": boss_slug.replace("-", " ").title(),

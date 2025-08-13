@@ -95,9 +95,6 @@ async def retrieve_race_update(rwf_channel):
 
 
 async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: str):
-    # TODO: Remove this
-    logging.info(f'Boss Rankings JSON: \n{boss_rankings_json}')
-
     boss = difficulty + '-' + boss_slug
 
     try:
@@ -126,6 +123,9 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
     await conn.close()
 
     try:
+        # TODO: Remove this
+        logging.info(f'Boss Rankings JSON: \n{boss_rankings_json}')
+
         target_rank = boss_rankings_json[boss_kills - 1]
         logging.info(f'Target Rank JSON: \n{boss_rankings_json}')
     except IndexError:

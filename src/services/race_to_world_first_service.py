@@ -127,7 +127,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
         logging.info(f'Boss Rankings JSON: \n{boss_rankings_json}')
 
         target_rank = boss_rankings_json[boss_kills - 1]
-        logging.info(f'Target Rank JSON: \n{boss_rankings_json}')
+        logging.info(f'Target Rank JSON: \n{target_rank}')
     except IndexError:
         logging.info('Tried to get an invalid index from boss_rankings_json')
         return None

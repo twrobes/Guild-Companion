@@ -106,7 +106,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
         result = await conn.fetch(get_record_query, boss)
         boss_kills = result[0]['kills']
 
-        if boss_kills > KILL_LIMIT:
+        if boss_kills >= KILL_LIMIT:
             return 'kill_limit'
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(f'The database transaction to retrieve {boss_slug} boss record had an error: {e}')

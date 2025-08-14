@@ -52,7 +52,10 @@ async def retrieve_race_update(rwf_channel):
                     boss_rankings = await response.json()
 
             if response.ok and boss_rankings is not None and len(boss_rankings) != 0:
-                update_dict: dict | None = await get_update_dict(BOSS_SLUG_LIST[boss_idx], boss_rankings['bossRankings'], difficulty)
+                update_dict: dict | bool | None = await get_update_dict(BOSS_SLUG_LIST[boss_idx], boss_rankings['bossRankings'], difficulty)
+
+                if update_dict:
+                    continue
             elif boss_rankings is None:
                 logging.error(f'JSON response was none. JSON content: {boss_rankings}')
             elif 400 <= response.status < 500:
@@ -99,9 +102,12 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
 
     try:
         conn = await asyncpg.connect(f'postgres://avnadmin:{POSTGRESQL_SECRET}@atrocious-bot-db-atrocious-bot.l.aivencloud.com:12047/defaultdb?sslmode=require')
-        get_record_query = """SELECT kills FROM rwf_tracker WHERE boss=($1) AND kills<=($2)"""
-        result = await conn.fetch(get_record_query, boss, KILL_LIMIT)
+        get_record_query = """SELECT kills FROM rwf_tracker WHERE boss=($1)"""
+        result = await conn.fetch(get_record_query, boss)
         boss_kills = result[0]['kills']
+
+        if boss_kills >= KILL_LIMIT:
+            return True
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(f'The database transaction to retrieve {boss_slug} boss record had an error: {e}')
         return None

@@ -13,6 +13,8 @@ from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, A
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 
 ATROCIOUS_SERVER_ID = 699611111066042409
+GREAT_VAULTS_CHANNEL_ID = 1290734144988516456
+
 DATE_FORMAT = '%Y-%m-%d'
 VALID_MOONKIN_WORDS = ['kick', 'fuck', 'stair', '400', 'buff', 'nerf', 'meta']
 
@@ -90,6 +92,24 @@ async def on_message(message):
             await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
         else:
             await message.channel.send('<:stare:1270932409428344893>')
+
+    # Removes messages from the great-vaults channel that are not an image only
+    if message.channel.id == GREAT_VAULTS_CHANNEL_ID:
+        # Check for image attachments
+        has_image = any(
+            att.content_type and att.content_type.startswith("image/")
+            for att in message.attachments
+        )
+
+        # If no image or contains text, delete the message
+        if not has_image or message.content.strip():
+            try:
+                await message.delete()
+                return  # Stop further processing
+            except discord.Forbidden:
+                logging.warning("Missing permission to delete message.")
+            except discord.HTTPException:
+                logging.error("Failed to delete message.")
 
     await bot.process_commands(message)
 

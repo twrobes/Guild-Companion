@@ -27,6 +27,28 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents, application_id='1228562180409131009')
 
 
+def is_non_image_message(msg: discord.Message) -> bool:
+    """Return True if the message is NOT image-only."""
+    has_image = any(
+        att.content_type and att.content_type.startswith("image/")
+        for att in msg.attachments
+    )
+    return not has_image or msg.content.strip()
+
+
+async def cleanup_channel(channel: discord.TextChannel):
+    deleted_count = 0
+    async for msg in channel.history(limit=50):
+        if is_non_image_message(msg):
+            try:
+                await msg.delete()
+                deleted_count += 1
+            except discord.Forbidden:
+                print("Missing permission to delete message.")
+                break
+            except discord.HTTPException:
+                continue
+
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
@@ -43,6 +65,7 @@ async def load():
 
 @bot.event
 async def on_message(message):
+    global message_counter
     msg_lower = message.content.lower()
 
     if message.author == bot.user:
@@ -95,21 +118,20 @@ async def on_message(message):
 
     # Removes messages from the great-vaults channel that are not an image only
     if message.channel.id == GREAT_VAULTS_CHANNEL_ID:
-        # Check for image attachments
-        has_image = any(
-            att.content_type and att.content_type.startswith("image/")
-            for att in message.attachments
-        )
-
-        # If no image or contains text, delete the message
-        if not has_image or message.content.strip():
+        if is_non_image_message(message):
             try:
                 await message.delete()
-                return  # Stop further processing
+                return
             except discord.Forbidden:
-                logging.warning("Missing permission to delete message.")
+                print("Missing permission to delete message.")
             except discord.HTTPException:
-                logging.error("Failed to delete message.")
+                print("Failed to delete message.")
+
+        # Count messages for periodic cleanup
+        message_counter += 1
+        if message_counter >= 10:
+            message_counter = 0
+            await cleanup_channel(message.channel)
 
     await bot.process_commands(message)
 

@@ -13,8 +13,8 @@ from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, A
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 
 ATROCIOUS_SERVER_ID = 699611111066042409
+CUTOFF_DATE = datetime.datetime(2025, 9, 9, tzinfo=datetime.timezone.utc)
 GREAT_VAULTS_CHANNEL_ID = 1290734144988516456
-
 DATE_FORMAT = '%Y-%m-%d'
 VALID_MOONKIN_WORDS = ['kick', 'fuck', 'stair', '400', 'buff', 'nerf', 'meta']
 
@@ -27,7 +27,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents, application_id='1228562180409131009')
 
 
-def is_non_image_message(msg: discord.Message) -> bool:
+def is_nonimage_message(msg: discord.Message) -> bool:
     """Return True if the message is NOT image-only."""
     has_image = any(
         att.content_type and att.content_type.startswith("image/")
@@ -37,17 +37,20 @@ def is_non_image_message(msg: discord.Message) -> bool:
 
 
 async def cleanup_channel(channel: discord.TextChannel):
+    """Delete all non-image messages in the channel since CUTOFF_DATE."""
     deleted_count = 0
-    async for msg in channel.history(limit=50):
-        if is_non_image_message(msg):
+    async for msg in channel.history(limit=None, after=CUTOFF_DATE):
+        if is_nonimage_message(msg):
             try:
                 await msg.delete()
                 deleted_count += 1
             except discord.Forbidden:
-                print("Missing permission to delete message.")
+                print("Missing permission to delete some messages.")
                 break
             except discord.HTTPException:
                 continue
+    if deleted_count > 0:
+        print(f"Cleaned {deleted_count} old non-image messages in {channel.name}")
 
 @bot.event
 async def on_ready():
@@ -55,6 +58,7 @@ async def on_ready():
     check_and_update_bot_attendance_msg.start()
     remove_past_absences.start()
     update_bot_status.start()
+    vault_cleanup.start()
 
 
 async def load():
@@ -118,7 +122,7 @@ async def on_message(message):
 
     # Removes messages from the great-vaults channel that are not an image only
     if message.channel.id == GREAT_VAULTS_CHANNEL_ID:
-        if is_non_image_message(message):
+        if is_nonimage_message(message):
             try:
                 await message.delete()
                 return
@@ -126,12 +130,6 @@ async def on_message(message):
                 print("Missing permission to delete message.")
             except discord.HTTPException:
                 print("Failed to delete message.")
-
-        # Count messages for periodic cleanup
-        message_counter += 1
-        if message_counter >= 10:
-            message_counter = 0
-            await cleanup_channel(message.channel)
 
     await bot.process_commands(message)
 
@@ -203,6 +201,19 @@ async def update_bot_status():
     await conn.close()
     logging.info('Server status check completed.')
 
+
+@tasks.loop(minutes=5)
+async def vault_cleanup():
+    """Every 5 minutes, clean up backlog in the vault channel."""
+    channel = bot.get_channel(GREAT_VAULTS_CHANNEL_ID)
+    if channel is None:
+        return
+
+    # Quick check: see if there are any non-image messages
+    async for msg in channel.history(limit=50, after=CUTOFF_DATE):  # peek at recent 50
+        if is_nonimage_message(msg):
+            await cleanup_channel(channel)
+            break  # stop early, cleanup_channel already did full sweep
 
 @tasks.loop(minutes=60)
 async def check_and_update_bot_attendance_msg():

@@ -52,6 +52,7 @@ async def cleanup_channel(channel: discord.TextChannel):
     if deleted_count > 0:
         print(f"Cleaned {deleted_count} old non-image messages in {channel.name}")
 
+
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
@@ -182,7 +183,7 @@ async def update_bot_status():
         minutes_diff = seconds_diff // 60
 
         if minutes_diff != 0 and minutes_diff % 30 == 0:
-            await channel_to_msg.send(f'Servers have been offline for {minutes_diff/60} hours')
+            await channel_to_msg.send(f'Servers have been offline for {minutes_diff / 60} hours')
 
         status_msg = 'Area-52 is offline'
 
@@ -214,6 +215,7 @@ async def vault_cleanup():
         if is_nonimage_message(msg):
             await cleanup_channel(channel)
             break  # stop early, cleanup_channel already did full sweep
+
 
 @tasks.loop(minutes=60)
 async def check_and_update_bot_attendance_msg():

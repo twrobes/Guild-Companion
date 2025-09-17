@@ -26,20 +26,19 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents, application_id='1228562180409131009')
 
 
-def is_nonimage_message(msg: discord.Message) -> bool:
-    """Return True if the message is NOT image-only."""
-    has_image = any(
+def has_image(msg: discord.Message) -> bool:
+    """Return True if the Discord message has at least one image attachment."""
+    return any(
         att.content_type and att.content_type.startswith("image/")
         for att in msg.attachments
     )
-    return not has_image or msg.content.strip()
 
 
 async def cleanup_channel(channel: discord.TextChannel):
     deleted_count = 0
 
     async for msg in channel.history(limit=None):
-        if is_nonimage_message(msg):
+        if not has_image(msg):
             try:
                 await msg.delete()
                 deleted_count += 1
@@ -123,7 +122,7 @@ async def on_message(message):
 
     # Removes messages from the great-vaults channel that are not an image only
     if message.channel.id == GREAT_VAULTS_CHANNEL_ID:
-        if is_nonimage_message(message):
+        if not has_image(message):
             try:
                 await message.delete()
                 return

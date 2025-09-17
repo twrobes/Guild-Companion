@@ -13,8 +13,7 @@ from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, A
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 
 ATROCIOUS_SERVER_ID = 699611111066042409
-CUTOFF_DATE = datetime.datetime(2025, 9, 9, tzinfo=datetime.timezone.utc)
-GREAT_VAULTS_CHANNEL_ID = 1290734144988516456
+GREAT_VAULTS_CHANNEL_ID = 1417639165285109881
 DATE_FORMAT = '%Y-%m-%d'
 VALID_MOONKIN_WORDS = ['kick', 'fuck', 'stair', '400', 'buff', 'nerf', 'meta']
 
@@ -37,9 +36,9 @@ def is_nonimage_message(msg: discord.Message) -> bool:
 
 
 async def cleanup_channel(channel: discord.TextChannel):
-    """Delete all non-image messages in the channel since CUTOFF_DATE."""
     deleted_count = 0
-    async for msg in channel.history(limit=None, after=CUTOFF_DATE):
+
+    async for msg in channel.history(limit=None):
         if is_nonimage_message(msg):
             try:
                 await msg.delete()
@@ -49,6 +48,7 @@ async def cleanup_channel(channel: discord.TextChannel):
                 break
             except discord.HTTPException:
                 continue
+
     if deleted_count > 0:
         print(f"Cleaned {deleted_count} old non-image messages in {channel.name}")
 
@@ -203,15 +203,15 @@ async def update_bot_status():
     logging.info('Server status check completed.')
 
 
-@tasks.loop(minutes=5)
+@tasks.loop(minutes=15)
 async def vault_cleanup():
-    """Every 5 minutes, clean up backlog in the vault channel."""
+    """Every 15 minutes, clean up backlog in the vault channel."""
     channel = bot.get_channel(GREAT_VAULTS_CHANNEL_ID)
     if channel is None:
         return
 
     # Quick check: see if there are any non-image messages
-    async for msg in channel.history(limit=50, after=CUTOFF_DATE):  # peek at recent 50
+    async for msg in channel.history():
         if is_nonimage_message(msg):
             await cleanup_channel(channel)
             break  # stop early, cleanup_channel already did full sweep

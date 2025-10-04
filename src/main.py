@@ -174,7 +174,14 @@ async def update_bot_status():
                         WHERE id=1
                     """, datetime.datetime.now())
             except (Exception, asyncpg.PostgresError) as e:
-                logging.error('An exception occurred when trying to update the server_maintenance_started column to TRUE')
+                logging.error('An exception occurred when trying to update the server_maintenance_started column to TRUE', e)
+
+        try:
+            get_record_query = """SELECT * FROM time_tracking WHERE id=1"""
+            time_tracking = await conn.fetchrow(get_record_query)
+        except (Exception, asyncpg.PostgresError) as e:
+            logging.error('An error occurred when getting the time tracking record from the db', e)
+            await conn.close()
 
         start_time = time_tracking['server_maintenance_start_time']
         current_time = datetime.datetime.now()
@@ -202,16 +209,16 @@ async def update_bot_status():
     logging.info('Server status check completed.')
 
 
-@tasks.loop(minutes=15)
+@tasks.loop(minutes=60)
 async def vault_cleanup():
-    """Every 15 minutes, clean up backlog in the vault channel."""
+    """Every 60 minutes, clean up backlog in the vault channel."""
     channel = bot.get_channel(GREAT_VAULTS_CHANNEL_ID)
     if channel is None:
         return
 
     # Quick check: see if there are any non-image messages
     async for msg in channel.history():
-        if is_nonimage_message(msg):
+        if not has_image(msg):
             await cleanup_channel(channel)
             break  # stop early, cleanup_channel already did full sweep
 

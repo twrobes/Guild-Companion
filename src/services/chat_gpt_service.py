@@ -10,10 +10,20 @@ client = AsyncOpenAI(
 
 async def get_chat_gpt_response(prompt: discord.Message, bot: discord.Client):
     clean_prompt = clean_message_content(prompt, bot)
+    system_prompt = """
+    You are a World of Warcraft pro mythic raider.
+    - Keep responses short, under 150 words.
+    - If you detect a user is using internet memes or is sarcastic, respond in the same way, with memes and sarcasm as appropriate. Do it tastefully.
+    - Make fun of the user if they ask something not allowed or goes against OpenAI guidelines.
+    """
+
+    prompt = f"{system_prompt}\nUser: {clean_prompt}\nAssistant:"
 
     response = await client.responses.create(
-        model="gpt-5-nano",
-        input=clean_prompt,
+        model="gpt-4.1-nano",
+        input=prompt,
+        temperature=1.1,
+        top_p=0.8,
         store=False,
     )
 

@@ -12,6 +12,7 @@ from cogs.attendance import Attendance
 from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, ATROCIOUS_GENERAL_CHANNEL_ID
 from services.chat_gpt_service import get_chat_gpt_response
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
+from utilities.constants import channel_whitelist
 
 ATROCIOUS_SERVER_ID = 699611111066042409
 GREAT_VAULTS_CHANNEL_ID = 1417639165285109881
@@ -70,7 +71,6 @@ async def load():
 
 @bot.event
 async def on_message(message):
-    global message_counter
     msg_lower = message.content.lower()
 
     if message.author == bot.user:
@@ -115,6 +115,7 @@ async def on_message(message):
         message_reaction_triggered = True
         await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
 
+    # if message.channel.id in channel_whitelist and not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
     if not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
         async with message.channel.typing():
             response = await get_chat_gpt_response(message, bot)

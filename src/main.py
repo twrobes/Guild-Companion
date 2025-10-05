@@ -115,8 +115,7 @@ async def on_message(message):
         message_reaction_triggered = True
         await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
 
-    # if message.channel.id in channel_whitelist and not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
-    if not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
+    if message.channel.id in channel_whitelist and not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
         async with message.channel.typing():
             response = await get_chat_gpt_response(message, bot)
 

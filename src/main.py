@@ -10,6 +10,7 @@ from discord.ext import commands, tasks
 
 from cogs.attendance import Attendance
 from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, ATROCIOUS_GENERAL_CHANNEL_ID
+from services.chat_gpt_service import get_chat_gpt_response
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 
 ATROCIOUS_SERVER_ID = 699611111066042409
@@ -110,15 +111,15 @@ async def on_message(message):
         await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402083208027308122/kick_moonkin_down_stairs.png?ex="
                                    "68929f3e&is=68914dbe&hm=ebe0785687680428b94a9511562844cafa39d78bb4cf1a0b333d0d6d897f01d2&")
 
-    if bot.user in message.mentions and not message_reaction_triggered:
-        if 'hi' in msg_lower or 'hello' in msg_lower or 'hey' in msg_lower:
-            await message.channel.send('<a:hiii:1325574390431223839>')
-        elif 'meowdy' in msg_lower:
-            await message.channel.send('<a:meowdy:1325576796497772616>')
-        elif 'kick' in msg_lower and 'moonkin' in msg_lower or 'boomkin' in msg_lower:
-            await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
-        else:
-            await message.channel.send('<:stare:1270932409428344893>')
+    if 'kick' in msg_lower and ('moonkin' in msg_lower or 'boomkin' in msg_lower):
+        message_reaction_triggered = True
+        await message.channel.send(file=discord.File('resources/kick_moonkin_down_stairs.png'))
+
+    if not message_reaction_triggered and message.mentions and message.mentions[0] == bot.user:
+        async with message.channel.typing():
+            response = await get_chat_gpt_response(message, bot)
+
+        await message.channel.send(response)
 
     # Removes messages from the great-vaults channel that are not an image only
     if message.channel.id == GREAT_VAULTS_CHANNEL_ID:

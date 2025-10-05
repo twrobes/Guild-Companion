@@ -3,6 +3,7 @@ channel_whitelist = [
     1258625322929229916,  # bot_testing
     759837470597971998,  # wowhead
     699611111594393613,  # general
+    1050055919951675432,  # guild-chat
     1259667095990439966,  # pet-pics
     1243195541542670376,  # fitness-health
     1059964278754525244,  # memes

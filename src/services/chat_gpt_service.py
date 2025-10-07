@@ -1,5 +1,3 @@
-import logging
-
 import discord
 from openai import AsyncOpenAI
 
@@ -11,7 +9,6 @@ client = AsyncOpenAI(
 
 
 async def get_chat_gpt_response(prompt: discord.Message, bot: discord.Client):
-    print('prompt received')
     clean_prompt = clean_message_content(prompt, bot)
     system_prompt = """
     By default, give a normal response.

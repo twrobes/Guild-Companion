@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import logging
+import math
 import os
 
 import discord
@@ -187,7 +188,7 @@ async def update_bot_status():
         start_time = time_tracking['server_maintenance_start_time']
         current_time = datetime.datetime.now()
         seconds_diff = int((current_time - start_time).total_seconds())
-        minutes_diff = seconds_diff // 60
+        minutes_diff = math.ceil(seconds_diff / 60)
 
         if minutes_diff != 0 and minutes_diff % 30 == 0:
             await channel_to_msg.send(f'Servers have been offline for {minutes_diff / 60} hours')

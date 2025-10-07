@@ -1,3 +1,5 @@
+import logging
+
 import discord
 from openai import AsyncOpenAI
 
@@ -9,6 +11,7 @@ client = AsyncOpenAI(
 
 
 async def get_chat_gpt_response(prompt: discord.Message, bot: discord.Client):
+    print('prompt received')
     clean_prompt = clean_message_content(prompt, bot)
     system_prompt = """
     By default, give a normal response.
@@ -43,8 +46,8 @@ def clean_message_content(message: discord.Message, bot: discord.Client) -> str:
 
     # 2️⃣ Replace all other user mentions (<@12345>) with their username
     for user in message.mentions:
-        content = content.replace(f"<@{user.id}>", f"@{user.display_name}")
-        content = content.replace(f"<@!{user.id}>", f"@{user.display_name}")
+        content = content.replace(f"<@{user.id}>", f"{user.display_name}")
+        content = content.replace(f"<@!{user.id}>", f"{user.display_name}")
 
     # 3️⃣ Replace role mentions (<@&12345>) with their role name
     for role in message.role_mentions:

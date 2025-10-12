@@ -12,7 +12,7 @@ from utilities.constants import MESSAGE_HISTORY_CHANNELS
 client = AsyncOpenAI(
     api_key=CHAT_GPT_API_KEY
 )
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 MESSAGE_HISTORY_FILE = BASE_DIR / "resources" / "server_atrocious_messages.txt"
 MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_2025.txt"
@@ -45,6 +45,9 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     """
 
     reply_text = await get_replied_text(message)
+
+    print(f'{BASE_DIR}')
+    print(f'{MESSAGE_HISTORY_FILE_SUMMARIZED}')
 
     if reply_text:
         prompt = (

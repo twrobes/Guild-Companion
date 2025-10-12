@@ -1,9 +1,10 @@
-channel_whitelist = [
+ALLOWED_AI_CHANNELS = [
     347861672137981954,  # bot_things
     1258625322929229916,  # bot_testing
     759837470597971998,  # wowhead
     699611111594393613,  # general
     1050055919951675432,  # guild-chat
+    1259667095990439966,  # good-eats
     1259667095990439966,  # pet-pics
     1243195541542670376,  # fitness-health
     1059964278754525244,  # memes
@@ -12,4 +13,16 @@ channel_whitelist = [
     1050059557877063681,  # mythic-plus
     1159877399916331068,  # raid-discussion
     1050057278994268205,  # raid-logs
+]
+
+MESSAGE_HISTORY_CHANNELS = [
+    759837470597971998,  # wowhead
+    699611111594393613,  # general
+    1050055919951675432,  # guild-chat
+    1259667095990439966,  # good-eats
+    1259667095990439966,  # pet-pics
+    1243195541542670376,  # fitness-health
+    1059964278754525244,  # memes
+    1050059557877063681,  # mythic-plus
+    1159877399916331068,  # raid-discussion
 ]

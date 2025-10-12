@@ -5,6 +5,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands, tasks
 
+from services.chat_gpt_service import scrape_server_message_history
 from services.race_to_world_first_service import retrieve_race_update
 from services.raider_io_service import retrieve_mythic_plus_update
 
@@ -89,6 +90,14 @@ class Admin(commands.GroupCog, name='admin'):
             mythic_plus_channel = self.bot.get_channel(MYTHIC_PLUS_CHANNEL_ID)
             await retrieve_mythic_plus_update(mythic_plus_channel)
             logging.info(f'Sent an update to the mythic plus leaderboard at {datetime.now()}')
+
+    @app_commands.command(
+        name='scrape_message_history',
+        description='Scrapes a discord server for all messages and saves to a text file'
+    )
+    async def get_message_history(self, interaction: discord.Interaction):
+        await scrape_server_message_history(self.bot)
+        await interaction.response.send_message('Scraping completed.')
 
 
 async def setup(bot):

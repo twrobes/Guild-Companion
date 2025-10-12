@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from pathlib import Path
 
 import discord
 from openai import AsyncOpenAI
@@ -11,10 +12,12 @@ from utilities.constants import MESSAGE_HISTORY_CHANNELS
 client = AsyncOpenAI(
     api_key=CHAT_GPT_API_KEY
 )
-MESSAGE_HISTORY_FILE = "C:/Users/twrob/discord-bots-python/atrocious-bot/src/resources/server_atrocious_messages.txt"
-MESSAGE_HISTORY_FILE_2025 = "C:/Users/twrob/discord-bots-python/atrocious-bot/src/resources/server_atrocious_messages_2025.txt"
-MESSAGE_HISTORY_FILE_SUMMARIZED = "C:/Users/twrob/discord-bots-python/atrocious-bot/src/resources/server_atrocious_messages_summarized.txt"
-STATE_FILE = "C:/Users/twrob/discord-bots-python/atrocious-bot/src/resources/last_message_ids.json"
+BASE_DIR = Path(__file__).resolve().parent
+
+MESSAGE_HISTORY_FILE = BASE_DIR / "resources" / "server_atrocious_messages.txt"
+MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_2025.txt"
+MESSAGE_HISTORY_FILE_SUMMARIZED = BASE_DIR / "resources" / "server_atrocious_messages_summarized.txt"
+STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
 
 
 async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):

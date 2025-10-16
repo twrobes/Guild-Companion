@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import random
 from pathlib import Path
 
 import discord
@@ -63,10 +64,10 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         )
 
     response = await client.responses.create(
-        model="gpt-4.1-nano",
+        model="gpt-4.1-mini",
         input=prompt,
-        temperature=1.1,
-        top_p=0.8,
+        temperature=round(random.uniform(0.0, 2.0), 2),
+        top_p=1.0,
         store=False,
     )
 

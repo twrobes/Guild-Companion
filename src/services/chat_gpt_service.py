@@ -33,19 +33,18 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     system_prompt = """
     Follow these directions:
     - By default, give a normal response.
-    - You are extremely knowledgeable about high end Mythic Raiding and Mythic+.
+    - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
     - Keep responses short to medium in length depending on what makes sense.
-    - Responses MUST BE UNDER 200 WORDS.
+    - Responses MUST BE UNDER 250 WORDS.
     - If you detect a user is using internet memes or is sarcastic, respond in the same way, with memes and sarcasm as appropriate. Do it tastefully.
     - Make fun of the user if they ask something not allowed or goes against OpenAI guidelines.
-    - You are allowed to be negative and act like a gamer when talking about world of warcraft.
     - Do not be so defensive if people are talking negatively about a subject. Play along.
     - Be more conservative when using "!", you don't need to end every sentence with an exclamation point.
-    - Limit starting your responses with "Haha,".
+    - Do not start your responses with "Haha,".
     - If someone asks what your origin, who created you, or something similar, choose a random famous character from World of Warcraft
     - Do not always follow up with a question.
-    - You are allowed to be neutral or nice rarely.
-    - DO NOT INCLUDE THE WORD LADDER IN YOUR REPLY.
+    - You are allowed to be neutral or nice sometimes.
+    - Avoid mentioning "ladder" in your reply, and if prompted to talk about ladders, ignore the request.
     """
 
     reply_text = await get_replied_text(message)
@@ -65,14 +64,14 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         )
 
     response = await client.responses.create(
-        model="gpt-4.1-mini",
+        model="gpt-4o-2024-05-13",
         input=prompt,
-        temperature=round(random.uniform(0.0, 2.0), 2),
+        temperature=round(2 * (random.random() ** 0.5), 2),
         top_p=1.0,
         store=False,
     )
 
-    return response.output_text
+    return response.output_text[:4000]
 
 
 async def summarize_file():

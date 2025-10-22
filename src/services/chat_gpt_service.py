@@ -71,7 +71,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         store=False,
     )
 
-    return response.output_text[:4000]
+    return response.output_text[:2000]
 
 
 async def summarize_file():

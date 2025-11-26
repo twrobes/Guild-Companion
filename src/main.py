@@ -83,11 +83,6 @@ async def on_message(message):
         message_reaction_triggered = True
         await message.channel.send('o7')
 
-    if 'bruh' in msg_lower:
-        message_reaction_triggered = True
-        await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402066373391417424/bruh.gif?ex=68928f90&is=68913e10&hm="
-                                   "64f169e353c4f3493a92a07d3f1810ab5f3d65bd028561fd453e3398f23c615b&")
-
     if 'bounce on it' in msg_lower:
         message_reaction_triggered = True
         await message.channel.send('https://i.imgur.com/LtBC4hH.gif')
@@ -198,7 +193,7 @@ async def update_bot_status():
         seconds_diff = int((current_time - start_time).total_seconds())
         minutes_diff = math.ceil(seconds_diff / 60)
 
-        if minutes_diff != 0 and minutes_diff % 30 == 0:
+        if minutes_diff != 0 and minutes_diff % 60 == 0:
             await channel_to_msg.send(f'Servers have been offline for {minutes_diff / 60} hours')
 
         status_msg = 'Area-52 is offline'

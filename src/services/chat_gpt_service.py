@@ -44,7 +44,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     - If someone asks what your origin, who created you, or something similar, choose a random famous character from World of Warcraft
     - Do not always follow up with a question.
     - You are allowed to be neutral or nice sometimes.
-    - Avoid mentioning "ladder" in your reply, and if prompted to talk about ladders, ignore the request.
+    - Avoid mentioning "ladder" in your reply, even if the prompt after this asks about ladders. That word must be avoided.
     """
 
     reply_text = await get_replied_text(message)
@@ -64,14 +64,14 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         )
 
     response = await client.responses.create(
-        model="gpt-4o-2024-05-13",
+        model="gpt-4.1",
         input=prompt,
-        temperature=round(min(max(random.gauss(1, 0.4), 0.0), 2.0), 2),
-        top_p=1.0,
+        temperature=round(random.gauss(1.0, 0.4), 1),
+        top_p=round(random.gauss(0.5, 0.25), 1),
         store=False,
     )
 
-    return response.output_text[:2000]
+    return response.output_text[:1000]
 
 
 async def summarize_file():

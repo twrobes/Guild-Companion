@@ -97,11 +97,6 @@ async def on_message(message):
         await message.channel.send("https://media.discordapp.net/attachments/360571569791303681/989015957445943307/ezgif.com-gif-maker_4.gif?ex=689229a3&is=6890d823&hm="
                                    "e89f14000d43fc29ae5c953a2eb1e826955fc1209410bc9c63ec07d84c0cde4c&")
 
-    if 'hopeful' in msg_lower:
-        message_reaction_triggered = True
-        await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402083668356497491/hopeful_satisfied.gif?ex=68929fab&is="
-                                   "68914e2b&hm=9804f8bba0351bcb6087c08510c7f3084afb0d66bcf74642bfd9fccfd79bf4d2&")
-
     if any(word in msg_lower for word in VALID_MOONKIN_WORDS) and ('moonkin' in msg_lower or 'boomkin' in msg_lower):
         message_reaction_triggered = True
         await message.channel.send("https://cdn.discordapp.com/attachments/347861672137981954/1402083208027308122/kick_moonkin_down_stairs.png?ex="

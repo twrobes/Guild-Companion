@@ -66,8 +66,8 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     response = await client.responses.create(
         model="gpt-4.1",
         input=prompt,
-        temperature=round(random.gauss(1.0, 0.4), 1),
-        top_p=round(random.gauss(0.5, 0.25), 1),
+        temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
+        top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         store=False,
     )
 

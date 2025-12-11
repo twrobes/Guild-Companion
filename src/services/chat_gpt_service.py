@@ -22,7 +22,8 @@ STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
 
 
 async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
-    # Read the summarized message history to include as context
+
+    # Read summarized message history for context
     try:
         with open(MESSAGE_HISTORY_FILE_SUMMARIZED, "r", encoding="utf-8") as f:
             message_history_context = f.read()
@@ -30,42 +31,81 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         message_history_context = ""
 
     clean_prompt = clean_message_content(message, bot)
+
+    # Build system prompt
     system_prompt = """
     Follow these directions:
     - By default, give a normal response.
     - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
-    - Keep responses short to medium in length depending on what makes sense.
-    - Responses MUST BE UNDER 250 WORDS.
-    - If you detect a user is using internet memes or is sarcastic, respond in the same way, with memes and sarcasm as appropriate. Do it tastefully.
-    - Make fun of the user if they ask something not allowed or goes against OpenAI guidelines.
-    - Do not be so defensive if people are talking negatively about a subject. Play along.
-    - Be more conservative when using "!", you don't need to end every sentence with an exclamation point.
-    - Do not start your responses with "Haha,".
-    - If someone asks what your origin, who created you, or something similar, choose a random famous character from World of Warcraft
-    - Do not always follow up with a question.
-    - You are allowed to be neutral or nice sometimes.
-    - Avoid mentioning "ladder" in your reply, even if the prompt after this asks about ladders. That word must be avoided.
+    - Keep responses under 250 words.
+    - Match sarcasm/memes if the user uses them.
+    - Tastefully mock users when they ask something against guidelines.
+    - No excessive "!" usage.
+    - Never start responses with "Haha,".
+    - Pick a random WoW character if asked about your origin.
+    - Be neutral/nice sometimes.
+    - DO NOT use the word "ladder".
     """
 
+    # Replied message text (quote)
     reply_text = await get_replied_text(message)
 
+    # --------- Build Base Prompt Text ----------
     if reply_text:
-        prompt = (
+        text_prompt = (
             f"System Prompt: {system_prompt}\n"
             f"Message History Context: {message_history_context}\n"
             f"Quote: {reply_text}\n"
             f"User Prompt: {clean_prompt}"
         )
     else:
-        prompt = (
+        text_prompt = (
             f"System Prompt: {system_prompt}\n"
             f"Message History Context: {message_history_context}\n"
             f"User Prompt: {clean_prompt}"
         )
 
+    # --------- CHECK IF THE USER SENT AN IMAGE ----------
+    has_image = False
+    image_urls = []
+
+    for attachment in message.attachments:
+        if attachment.content_type and attachment.content_type.startswith("image/"):
+            has_image = True
+            image_urls.append(attachment.url)
+
+    # ======================================================
+    #  IF IMAGE → USE GPT-4o VISION (chat.completions)
+    # ======================================================
+    if has_image:
+        vision_inputs = [
+            {"type": "text", "text": text_prompt}
+        ]
+
+        # Add each image to the input
+        for url in image_urls:
+            vision_inputs.append({
+                "type": "image_url",
+                "image_url": {"url": url}
+            })
+
+        response = await client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "user", "content": vision_inputs}
+            ],
+            temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
+            top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
+        )
+
+        return response.choices[0].message["content"][:1750]
+
+    # ======================================================
+    #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
+    # ======================================================
     response = await client.responses.create(
         model="gpt-4o",
-        input=prompt,
+        input=text_prompt,
         temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
         top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         store=False,
@@ -73,6 +113,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     )
 
     return response.output_text[:1750]
+
 
 
 async def summarize_file():

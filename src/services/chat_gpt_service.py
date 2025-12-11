@@ -69,7 +69,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
         top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         store=False,
-        tools=[{"type": "web"}]
+        tools=[{"type": "web_search_preview_2025_03_11"}]
     )
 
     return response.output_text[:1750]

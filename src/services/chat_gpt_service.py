@@ -98,7 +98,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         )
 
-        return response.choices[0].message["content"][:1750]
+        return response.choices[0].message.content[:1750]
 
     # ======================================================
     #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING

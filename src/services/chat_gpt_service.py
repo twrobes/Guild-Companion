@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import random
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import discord
@@ -19,10 +20,11 @@ MESSAGE_HISTORY_FILE = BASE_DIR / "resources" / "server_atrocious_messages.txt"
 MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_2025.txt"
 MESSAGE_HISTORY_FILE_SUMMARIZED = BASE_DIR / "resources" / "server_atrocious_messages_summarized.txt"
 STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
+WORD_LIMIT = 40000
+MAX_DAYS = 7
 
 
 async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
-
     # Read summarized message history for context
     try:
         with open(MESSAGE_HISTORY_FILE_SUMMARIZED, "r", encoding="utf-8") as f:
@@ -44,7 +46,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     - Never start responses with "Haha,".
     - Pick a random WoW character if asked about your origin.
     - Be neutral/nice sometimes.
-    - DO NOT use the word "ladder".
+    - DO NOT use the word "ladder". Ladder is banned in any response you give.
     """
 
     # Replied message text (quote)
@@ -112,8 +114,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         tools=[{"type": "web_search_preview_2025_03_11"}]
     )
 
-    return response.output_text[:1750]
-
+    return response.output_text[:1800]
 
 
 async def summarize_file():
@@ -204,7 +205,7 @@ async def scrape_server_message_history(bot):
 
                 f.write(f"[{message.created_at}] {message.author}: {content}\n")
 
-    logging.info(f"✅ All messages saved to {MESSAGE_HISTORY_FILE}")
+    logging.info(f"All messages saved to {MESSAGE_HISTORY_FILE}")
 
 
 async def update_message_history(bot: discord.Client):
@@ -245,3 +246,67 @@ async def update_message_history(bot: discord.Client):
         json.dump(last_message_ids, f, indent=2)
 
     logging.info("Hourly message update complete.")
+
+
+async def get_channel_history_by_days(interaction: discord.Interaction, days: int, hours: int) -> str:
+    """
+    Scrape messages from the channel where the interaction occurred,
+    bounded by time (days → hours), per-message size, and total word count.
+
+    Returns a single formatted string suitable for LLM input.
+    """
+
+    # ---- Clamp days and calculate cutoff ----
+    days = max(1, min(days, MAX_DAYS))
+    hours = days * 24 + hours
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+
+    channel = interaction.channel
+
+    if not isinstance(channel, discord.TextChannel):
+        logging.info("Interaction channel is not a text channel.")
+        return ""
+
+    messages = []
+
+    # ---- Fetch messages (oldest → newest) ----
+    async for message in channel.history(limit=None, oldest_first=True, after=cutoff):
+        content = message.clean_content.strip()
+
+        if not content:
+            continue
+
+        formatted = (
+            f"[{message.created_at:%Y-%m-%d %H:%M}] "
+            f"{message.author.display_name}: {content}"
+        )
+
+        messages.append(formatted)
+
+    # ---- Trim to total WORD_LIMIT (newest-first) ----
+    selected = []
+    total_words = 0
+
+    for msg in reversed(messages):
+        msg_words = count_words(msg)
+
+        if total_words + msg_words > WORD_LIMIT:
+            break
+
+        selected.append(msg)
+        total_words += msg_words
+
+    selected.reverse()
+
+    logging.info(
+        f"Scraped {len(selected)} messages "
+        f"from last {hours} hours "
+        f"({total_words} words)"
+    )
+
+    return "\n".join(selected)
+
+
+def count_words(text: str) -> int:
+    return len(text.split())

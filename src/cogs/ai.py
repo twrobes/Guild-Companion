@@ -21,10 +21,12 @@ class AI(commands.Cog):
 
     @app_commands.command(
         name='summarize_chat',
-        description='Summarize the conversation within a chat channel.\n'
-                    'hours - Include messages with this amount of hours in the past.\n'
-                    'days (optional) - Include messages with this amount of days in the past.\n'
-                    'Example: 1 day 24 hours would be the past 48 hours.'
+        description='Summarize convo in this channel.\n'
+                    'Example: 1 day 30 hours would summarize the last 54 hours.'
+    )
+    @app_commands.describe(
+        hours="Include messages from this many hours in the past.",
+        days="Optional: Include messages from this many days in the past."
     )
     async def summarize_chat(self, interaction: discord.Interaction, hours: int, days: int = 0):
         await interaction.response.defer()

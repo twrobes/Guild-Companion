@@ -21,7 +21,9 @@ MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_
 MESSAGE_HISTORY_FILE_SUMMARIZED = BASE_DIR / "resources" / "server_atrocious_messages_summarized.txt"
 STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
 WORD_LIMIT = 40000
-MAX_DAYS = 7
+MAX_DAYS = 30
+MAX_HOURS = 720
+MAX_TOTAL_HOURS = 1080
 
 
 async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
@@ -258,9 +260,9 @@ async def get_channel_history_by_days(interaction: discord.Interaction, days: in
 
     # ---- Clamp days and calculate cutoff ----
     days = max(1, min(days, MAX_DAYS))
-    hours = days * 24 + hours
-
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    hours = max(1, min(hours, MAX_HOURS))
+    total_hours = max(1, min(hours + days * 24, MAX_TOTAL_HOURS))
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=total_hours)
 
     channel = interaction.channel
 

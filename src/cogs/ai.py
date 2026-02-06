@@ -33,13 +33,14 @@ class AI(commands.Cog):
 
         system_prompt = """
             You are an assistant to a Mythic Raiding guild in World of Warcraft that summarizes Discord channel conversations.
-            Provide a clear, accurate summary of what happened in under 500 words.
+            Provide a clear, accurate summary of what happened in under 750 words.
             Utilize markdown as needed since Discord messages support markdown.
+            Do not alter user names; use them exactly as shown in the chat log.
             """
 
         user_prompt = f"""
             Below is a chronological log of messages from a Discord channel.
-            Summarize the conversation clearly and concisely. Feel free to use names/usernames based on who wrote messages you are referencing in your report.
+            Summarize the conversation clearly and concisely.
 
             === BEGIN CHAT LOG ===
             {await get_channel_history_by_days(interaction, days, hours)}

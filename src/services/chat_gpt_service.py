@@ -259,8 +259,8 @@ async def get_channel_history_by_days(interaction: discord.Interaction, days: in
     """
 
     # ---- Clamp days and calculate cutoff ----
-    days = max(1, min(days, MAX_DAYS))
-    hours = max(1, min(hours, MAX_HOURS))
+    days = max(0, min(days, MAX_DAYS))
+    hours = max(0, min(hours, MAX_HOURS))
     total_hours = max(1, min(hours + days * 24, MAX_TOTAL_HOURS))
     cutoff = datetime.now(timezone.utc) - timedelta(hours=total_hours)
 

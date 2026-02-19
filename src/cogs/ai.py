@@ -55,7 +55,7 @@ class AI(commands.Cog):
             ]
         )
 
-        await interaction.followup.send(response.choices[0].message.content.strip()[:1800])
+        await interaction.followup.send(response.choices[0].message.content.strip()[:2000])
 
 
 async def setup(bot):

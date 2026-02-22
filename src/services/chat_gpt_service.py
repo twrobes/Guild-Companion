@@ -102,8 +102,8 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         )
 
-        # This removes the word "ladder" from the response (for the memes)
-        return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "", response.choices[0].message.content[:2000])
+        # This replaces the word "ladder" with "climbing device" from the response (for the memes)
+        return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "climbing device", response.choices[0].message.content[:2000])
 
     # ======================================================
     #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
@@ -117,7 +117,8 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         tools=[{"type": "web_search_preview_2025_03_11"}]
     )
 
-    return response.output_text[:1800]
+    # This replaces the word "ladder" with "climbing device" from the response (for the memes)
+    return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "climbing device", response.output_text[:2000])
 
 
 async def summarize_file():
@@ -146,8 +147,8 @@ async def summarize_file():
 def clean_message_content(message: discord.Message, bot: discord.Client) -> str:
     content = message.content
 
-    # Remove "ladder" from the message (for the memes)
-    content = re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "", content)
+    # Replace "ladder" with "climbing device" (for the memes)
+    content = re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "climbing device", content)
 
     # Remove the bot mention entirely
     content = content.replace(f"<@{bot.user.id}>", "")

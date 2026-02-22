@@ -102,7 +102,8 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         )
 
-        return response.choices[0].message.content[:1750]
+        # This removes the word "ladder" from the response (for the memes)
+        return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "", response.choices[0].message.content[:2000])
 
     # ======================================================
     #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
@@ -145,7 +146,7 @@ async def summarize_file():
 def clean_message_content(message: discord.Message, bot: discord.Client) -> str:
     content = message.content
 
-    # Remove "ladder" from the message
+    # Remove "ladder" from the message (for the memes)
     content = re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "", content)
 
     # Remove the bot mention entirely

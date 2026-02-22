@@ -4,6 +4,7 @@ import os
 import random
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from typing import re
 
 import discord
 from openai import AsyncOpenAI
@@ -48,7 +49,6 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     - Never start responses with "Haha,".
     - Pick a random WoW character if asked about your origin.
     - Be neutral/nice sometimes.
-    - DO NOT use the word "ladder". Ladder is banned in any response you give.
     """
 
     # Replied message text (quote)
@@ -145,24 +145,27 @@ async def summarize_file():
 def clean_message_content(message: discord.Message, bot: discord.Client) -> str:
     content = message.content
 
-    # 1️⃣ Remove the bot mention entirely
+    # Remove "ladder" from the message
+    content = re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "", content)
+
+    # Remove the bot mention entirely
     content = content.replace(f"<@{bot.user.id}>", "")
     content = content.replace(f"<@!{bot.user.id}>", "")  # handles mobile-style mentions too
 
-    # 2️⃣ Replace all other user mentions (<@12345>) with their username
+    # Replace all other user mentions (<@12345>) with their username
     for user in message.mentions:
         content = content.replace(f"<@{user.id}>", f"{user.display_name}")
         content = content.replace(f"<@!{user.id}>", f"{user.display_name}")
 
-    # 3️⃣ Replace role mentions (<@&12345>) with their role name
+    # Replace role mentions (<@&12345>) with their role name
     for role in message.role_mentions:
         content = content.replace(f"<@&{role.id}>", f"@{role.name}")
 
-    # 4️⃣ Replace channel mentions (<#12345>) with their channel name
+    # Replace channel mentions (<#12345>) with their channel name
     for channel in message.channel_mentions:
         content = content.replace(f"<#{channel.id}>", f"#{channel.name}")
 
-    # 5️⃣ Clean up extra spaces
+    # Clean up extra spaces
     return content.strip()
 
 

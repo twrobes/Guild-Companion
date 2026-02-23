@@ -4,7 +4,7 @@ import os
 import random
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from typing import re
+import re
 
 import discord
 from openai import AsyncOpenAI

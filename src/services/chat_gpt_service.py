@@ -323,7 +323,8 @@ async def generate_midnight_guide_response(user_question: str):
         {
             "role": "system",
             "content": [
-                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant. Do not mention the file(s) you get the data from."}
+                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant. Do not mention the file(s) you get the data from. "
+                                         "Responses must be under 1800 characters."}
             ]
         },
         {

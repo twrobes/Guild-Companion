@@ -65,7 +65,7 @@ class AI(commands.Cog):
     async def midnight_guide(self, interaction: discord.Interaction, request: str):
         await interaction.response.defer()
         response = await generate_midnight_guide_response(request)
-        await interaction.followup.send(response)
+        await interaction.followup.send(f'# Request: {request}\n\n{response}')
 
 
 async def setup(bot):

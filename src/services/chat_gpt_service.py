@@ -379,10 +379,13 @@ def retrieve_midnight_guide_context():
 
     # Load all item-level CSVs
     item_level_csvs = [
-        "approximate_midnight_raid_item_levels.csv",
-        "crafted_item_levels.csv",
-        "dungeon_and_bountiful_delve_item_levels_combined.csv",
-        "main_upgrade_tracks_and_crest_types.csv"
+        "midnight_gear_data_1.csv",
+        "midnight_gear_data_2.csv",
+        "midnight_gear_data_3.csv",
+        "midnight_gear_data_4.csv",
+        "midnight_gear_data_5.csv",
+        "midnight_gear_data_6.csv",
+        "midnight_gear_data_7.csv",
     ]
     item_level_data = {}
 

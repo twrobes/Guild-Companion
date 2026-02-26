@@ -1,0 +1,15 @@
+Section,Dungeon_Item_Levels
+Level,Loot,Vault,Crest_Reward
+Heroic,230,243,Champ X
+Mythic,246,256,Champ X
+Mythic+ 2,250,259,Hero x10
+Mythic+ 3,250,259,Hero x12
+Mythic+ 4,253,263,Hero x14
+Mythic+ 5,256,263,Hero x16
+Mythic+ 6,259,266,Hero x18
+Mythic+ 7,259,269,Mythic x10
+Mythic+ 8,263,269,Mythic x12
+Mythic+ 9,263,269,Mythic x14
+Mythic+ 10,266,272,Mythic x16
+Mythic+ 11,266,272,Mythic x18
+Mythic+ 12,266,272,Mythic x20

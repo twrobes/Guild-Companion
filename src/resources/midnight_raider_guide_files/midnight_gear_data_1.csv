@@ -1,0 +1,24 @@
+Section,Item_Level_Upgrade_Tracks
+Crest_Type,iLvl,Upgrade_Track,Crests,Amount
+Adventurer,220,Adventurer 1,Adventurer,20
+Adventurer,224,Adventurer 2,Adventurer,20
+Adventurer,227,Adventurer 3,Adventurer,20
+Adventurer,230,Adventurer 4,Adventurer,20
+Veteran,233,Adventurer 5 Veteran 1,Adventurer,20
+Veteran,237,Adventurer 6 Veteran 2,Adventurer or Veteran,20
+Veteran,240,Veteran 3,Veteran,20
+Veteran,243,Veteran 4,Veteran,20
+Vet/Champ,246,Veteran 5 Champion 1,Veteran,20
+Vet/Champ,250,Veteran 6 Champion 2,Veteran or Champion,20
+Vet/Champ,253,Champion 3,Champion,20
+Vet/Champ,256,Champion 4,Champion,20
+Champ/Hero,259,Champion 5 Hero 1,Champion,20
+Champ/Hero,263,Champion 6 Hero 2,Champion or Hero,20
+Champ/Hero,266,Hero 3,Hero,20
+Champ/Hero,269,Hero 4,Hero,20
+Hero/Myth,272,Hero 5 Mythic 1,Hero,20
+Hero/Myth,276,Hero 6 Mythic 2,Hero or Mythic,20
+Hero/Myth,279,Mythic 3,Mythic,20
+Hero/Myth,282,Mythic 4,Mythic,20
+Hero/Myth,285,Mythic 5,Mythic,20
+Hero/Myth,289,Mythic 6,Mythic,20

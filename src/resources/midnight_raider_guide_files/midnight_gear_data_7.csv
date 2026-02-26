@@ -1,0 +1,21 @@
+Section,Item_Acquisition_Sources
+Category,Method
+Adventurer,Repeatable Outdoor Events
+Adventurer,Tier 4 Delves
+Veteran,Repeatable Outdoor Events
+Veteran,Raid Finder
+Veteran,Heroic Season Dungeons
+Veteran,Delves (Tiers 5 to 6)
+Veteran,Trovehunter's Bounty (Tiers 4 to 5)
+Champion,Weekly Outdoor Events
+Champion,Normal Voidspire, The Dreamrift & March On Quel'Danas
+Champion,Mythic Season Dungeons (+2 to +3)
+Champion,Mythic Keystone Dungeons (+2 to +3)
+Champion,Trovehunter's Bounty (Tiers 6 to 7)
+Hero,Heroic Voidspire, The Dreamrift & March On Quel'Danas
+Hero,Mythic Keystone Dungeons (+4 to +8)
+Hero,Delves (Tier 11)
+Hero,Trovehunter's Bounty (Tiers 8 and up)
+Mythic,Mythic Voidspire, The Dreamrift & March On Quel'Danas
+Mythic,Mythic Keystone Dungeons (+9 and up)
+Mythic,Delves (Tier 11 with Gilded Stash)

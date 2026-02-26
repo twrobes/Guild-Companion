@@ -323,7 +323,7 @@ async def generate_midnight_guide_response(user_question: str):
         {
             "role": "system",
             "content": [
-                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant."}
+                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant. Do not mention the file(s) you get the data from."}
             ]
         },
         {
@@ -402,5 +402,7 @@ def retrieve_midnight_guide_context():
 
         item_level_data[csv_file] = rows
     guide_data["item_levels"] = item_level_data
+
+    print(guide_data)
 
     return guide_data

@@ -404,6 +404,4 @@ def retrieve_midnight_guide_context():
         item_level_data[csv_file] = rows
     guide_data["item_levels"] = item_level_data
 
-    print(guide_data)
-
     return guide_data

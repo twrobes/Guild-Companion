@@ -1,0 +1,480 @@
+Updated Feb 25
+
+Larias’ Raider’s Guide for Midnight
+
+See changelog here
+
+Created by larias (Discord) - feel free to DM and ask questions
+
+Big thanks to Post Nerf Clarity, Reloe of Northern Sky, and Neryssa from Icy-Veins for their contributions!
+
+
+I have made a checklist that follows the guide below. If you’d like to use it, you can find it here. Dev from Refined has created an addon that automatically updates whenever I update the checklist!
+
+
+My guild has also made a Loot Helper spreadsheet like last season if you’d like to share it with your guild leader or loot council.
+
+
+If you want to buy me a coffee, you can do so here. Thank you for all your support over the years!
+
+
+
+What’s changed for Raiders in Midnight?
+
+If you don’t care about any of this, you can skip to here or use the sheet or addon.
+
+
+Blizzard has harkened back to the days of Mists and Cata where we are getting a tier split amongst multiple raids with a slightly staggered release date including a heroic week. Week 1 of Season 1 will have mythic 0 dungeons and include LFR, Normal, and Heroic difficulties of the 6 boss Voidspire raid and the 1 boss Dreamrift raid. Week 2 will include the mythic versions of these raids and unlock M+ as well. Week 3 will unlock the LFR, Normal, Heroic, and Mythic versions of the 2 boss raid March on Quel’danas, which will contain the Omni-Token and the two hardest bosses of the season. There are some advantages to this - split raid IDs opens the possibility for not having to extend earlier in the season if you still want to reclear. If you’re working on the 6th boss of Voidspire, you can still clear Dreamrift quickly. If you’re working on March of Quel’danas, you could quickly clear the first 3 bosses of Voidspire and the Dreamrift to get 2 raid vault slots each week while still working on the March bosses. For the truly degenerate amongst you, you could even try to do mythic Dreamrift splits because it won’t affect the lockout of Voidspire or March. I look forward to seeing what y’all cook up!
+
+
+Next, the changes to gearing in Midnight.
+
+Crests are now track-specific. Hero track items require heroic crests only, mythic track items require mythic crests only etc. That means you can upgrade hero items to 5/6 and 6/6 and not sabotage your mythic progression. In fact, you can enhance it!
+They removed valorstones! YAY! They made it cost a miniscule amount of gold instead for some reason! Less YAY!
+The champion track (normal raid difficulty) is reduced to a 6 rank track. Items at 6/6 champion are the equivalent of 2/6 hero, making normal mode trinkets, tier, etc. weaker than they currently are.
+Upgrade costs have changed to 20 crests per upgrade, all the way from 1/6 to 6/6.
+The crest cap is raised from 90 to 100. This gives you 5 upgrades per week instead of the previous 6 upgrades per week.
+Crafting items now costs 80 Crests. This is the same amount that it takes to create an item at 5/6 so nothing has changed.
+
+A small change with tier tokens. Tier tokens are now sorted by armor type. Tier tokens from The Dreamrift have the prefix “aln-” and Tier tokens from The Voidspire have the prefix “void-”. Plate wearers use the Alnforged and Voidforged tokens, Mail wearers use the Alncast and Voidcast tokens, Leather wearers uses the Alncured and Voidcured tokens, and Cloth wearers use the Alnwoven and Voidwoven tokens. Be aware that the Omnitoken will not become available until the 3rd week.
+
+
+Another nice change is that once you acquire your 4-set bonus for the first time, all content can drop catalyst charges going forward. This makes queueing for LFR to try to get tier pieces so that you can activate your 4set bonus ASAP very important. Once unlocked, you can catalyze that higher item level non-set piece from M+ easily and still guarantee the ability to catalyze the random mythic armor piece you get from your vault.
+
+
+There is a new system called Prey that raiders can engage in for some loot in the first couple weeks but just like Delves the loot will fall off hard once Mythic+ unlocks. It comes in three difficulties - Normal, Hard, and Nightmare - that respectively award weekly Adventurer/Veteran/Champion rewards and crests. Full information can be found here and here.
+
+
+For Delve lovers, the way loot is awarded hasn’t changed much - just some modifications along the Delver’s Journey. I highly recommend keeping up with Moleman’s Delve Compendium if you are interested in Delves and their various rewards.
+
+
+There are a wide variety of consumables following in the same track as Dragonflight and TWW. You have your typical primary, secondary, and tertiary enchants. The only new twists are a crit damage ring enchant and an embellishment that doubles the strength of the special crafted Jewelcrafting rings and amulets. There are the normal sharpening stones by Blacksmiths but there’s also a new enchanting stone that gives melee attacks an arcane damage proc. While these are interesting, we all know we’re just going to do what sims tell us to do :( Food buffs return as highest secondary and primary stat but also increase your stamina as well, providing some extra survivability for those early weeks. You can still combine 10 feasts or 5 food buffs to make them hearty.
+
+
+There are a wide variety of new renowns that award Champion item level pieces at a renown level very easily reached after the campaign, especially with the DMF 10% buff for side quests. The Renown reward items are head, waist, necklace, and trinket. These provide a small but tangible power boost leading into the first Heroic raid. There is no raid renown in Midnight Season 1. Praise be, Neryssa now has a guide on Icy-Veins!
+
+
+
+Midnight Season 1 Cheat Sheet
+
+Courtesy of dburnnzz on Discord
+
+Download link
+
+
+
+
+
+
+What are the ramifications of the new upgrade system?
+
+
+Normal Difficulty(champion) items are now much less useful and powerful! Because Champion track items cap out at the equivalent of a 2/6 Heroic item instead of a 4/6 Heroic item, your Champion trinkets and set pieces will no longer have the staying power they did previously. You’ll want to replace them as quickly as possible.
+
+
+Hero Crests are now much more useful and powerful! This is a great change, giving players the ability to continue improving their Heroic items for about 6 weeks. This is a massive power increase for Heroic items and will increase your average item level by a surprising amount earlier in the season. In addition, there are some interesting ways to save Myth crests now.
+
+
+Crafted items are only Crest efficient if compared to a 1/6 item. If you are a player that consistently gets 2/6 mythic items from drops or vault, you will not want to spend Myth crests on these items other than to get your Embellishments or if you have a surplus of Crests and want a temporary power boost.
+
+
+Early mythic progression vault breakpoints continue to be very powerful. Every item in your vault you claim at 3/6 or 4/6 is going to be an ilvl increase over other people. Unless they change M+ vault to having scaling ilvl drops, taking an item from your m+ track is going to feel bad compared to taking it from your raid vault. Taking a 3/6 from your vault is the equivalent of getting 40% more Crests per week - taking a 4/6 is 60% more Crests per week.
+
+
+
+
+New - What changed with the Feb 20 Crest Changes?
+
+For those who are looking at this for the first time since the change from scaling Crest costs, Blizzard has reverted that. Click the link above for full details. Below are the changes to the guide that were made after this was changed.
+
+
+1) Weapons from raid and vault are competitive again.
+
+2) Crafting is once again only good for your first two items if you are a raider.You probably won’t craft beyond this if you have other items to upgrade.
+
+3) You now only hold Crests for 1 week, using them before stepping into Mythic.
+
+4) Your item level per week is much higher. For example, by the third week of mythic you should be 2.67 average ilvls higher than you would’ve been under the previous system.
+
+5) You will be able to convert Hero crests to Myth crests through some interesting shenanigans.
+
+
+
+How do I properly upgrade my gear?
+
+
+Spend heroic crests after you are done with reclear on Week 2, before stepping into Mythic for the first time. Unless your team cannot clear Heroic without spending these upgrades, it’s a good way to make sure that you get some crest saves from M+ and the later bosses in heroic that can drop higher item level.
+
+
+When upgrading Mythic pieces, if it’s a 1/6 mythic item, you have the ability to convert Heroic crests into Mythic crests. For example, if you get a 1/6 mythic helmet from your vault, you can upgrade your hero track item in that slot to 5/6 which is the same item level as 1/6 mythic for free. At this point, you can upgrade your 5/6 heroic helmet to 6/6 which then lets you upgrade your 1/6 mythic helmet to 2/6 for free, effectively converting 20 Heroic crests to 20 Mythic crests. Because you’ll be done with Heroic crests around week 6, any extra crests you can convert to mythic are helpful. Proof this works, courtesy of Zorthas. Thanks Zorthas!
+
+
+
+New - Crafting Advice
+
+There are two possible crafting paths for classes that can wield 2-handed weapons. Dual wield classes almost certainly will craft a 1h (fury warriors 2h) but for the classes that can use a 2-handed weapon you have two options each with their own benefits and risks. Note: int users, the only 2handed weapon from the raid comes from the final boss which you cannot obtain until after progression ends. This may weight in to your decision.
+
+
+Path 1 - Crafting a mythic 2h weapon ASAP
+
+Benefits: you gain a 5/6 (285) equivalent mythic weapon ASAP for the massive power spike for 80 Myth Crests.
+
+Negatives: You only have 1 embellishment, you spend 2 sparks to do so, and your weapon is 4 ilvls below max. You probably have unused Mythic crests for a couple weeks (see guide for timeline).
+
+
+Path 2 - Upgrading a 3/6H 2h Heroic weapon from M+ to 6/6h and crafting in 2 other spots
+
+Benefits: You gain 2x 5/6 (285) equivalent mythic armor slots with 2 embellishments for 160 Myth crests. When you do get a Mythic weapon, you can upgrade it to 6/6M for 80 Myth crests and max ilvl (289). You get to use your Mythic crests earlier for more power gain.
+
+Negatives: You use a 6/6h(2/6m equivalent) weapon until you get a mythic weapon from vault or raid drop, which will lower your power. There’s no guarantee you ever get a Mythic weapon from vault or raid. However, even if you get just a one-handed weapon, you could still use a 6/6m main hand and a 6/6h(same ilvl as 2/6m) offhand.
+
+
+Each class Discord will recommend what they think is best. If you’re a raider, and your raid leader says they need the immediate power boost of a 2h weapon, please listen to them so I don’t get DMs from angry raid leaders about having a raid team full of people sandbagging their weapon ilvl. However, depending on the tuning, having 2x items at myth item level with 2 embellishments might be more powerful than having 9 ilvls on your weapon.
+
+
+
+Leveling Tips
+
+Kalamazi just put out an excellent Midnight Leveling Tips guide if you want to check it out. His advice is for all classes, not just warlocks - cool things like speed boost embellishments and gems and other ways to make leveling faster and easier.
+
+
+
+
+Weekly Guide for Midnight Launch
+
+Weekly Checklist Here
+
+Dev from Refined has created an addon that automatically updates whenever I update the checklist!
+
+
+
+Early Access - February 26th to March 3rd
+
+Midnight Early Access is Pay to Win if you do not have unlimited time
+
+-Log on to each character you plan on leveling so they start accumulating rested XP.
+
+-Level with Warmode on any character you are planning on playing during Season 1. If you find you cannot reach max level without doing sidequest chains, you can do the chains until the final step that awards renown then hold that final turn in until Darkmoon Faire opens on Sunday.
+
+-Darkmoon Faire opens on Sunday for 10% more exp and rep.
+
+-If available, complete the weekly Saltheril’s Soiree in Eversong Woods with the DMF buff.
+
+-If available, complete the weekly Abundance Event in Zul’aman with the DMF buff. Excellent video by Kaychak!
+
+-If available, complete the weekly Legends of the Haranir event in Harandar with the DMF buff.
+
+-If available, complete the weekly Stormarion Assault in the Voidstorm with the DMF buff.
+
+-(Optional) With the DMF buff, kill each rare once in each zone for renown. These are a weekly lockout for each rare. Neryssa has an excellent guide that breaks down where each zone’s rares are.
+
+-With the DMF buff, hunt down each zone’s treasures that reward Renown. Neryssa has an excellent guide that breaks down where each zone’s treasures are.
+
+-Complete 4x Prey on normal difficulty for veteran gear.
+
+-If you are a crafter or want to minmax your renown gains to gain Champion items early, minimize the amount of side quests you do until Sunday so you can gain the 10% Renown gain from DMF.
+
+-Updated 2/25: while I do not believe it is likely, it is possible that there is a chance at an extra run of M0’s that could be available after the “Full Release” of World of Warcraft on Monday, March 2nd at 3pm PST/6pm EST before the weekly reset Tuesday morning. This would be a completely degenerate and likely unnecessary thing to do but if you’re bored it could be an option.
+
+-We can all aspire to be a degenerate like Xerwo.
+
+
+
+Updated 2/25: M0 confirmed March 2nd
+
+Blizzard has confirmed in an official interview that mythic 0 dungeons will be available March 2nd at a reduced Item level - Veteran 3/6 240ilvl. These should be on a weekly lockout.
+
+
+
+Pre-Season Week 1 - March 3rd
+
+M0’s available at reduced item level
+
+-Do not spend any crests unless told to.
+
+-Raise The Singularity to renown 7, Hara’ti to Renown 8, and Silvermoon & Amani to Renown 9 for free champion item level pieces. Use Darkmoon Faire buff to make this easier!
+
+-Complete the weekly Saltheril’s Soiree in Eversong Woods with the DMF buff.
+
+-Complete the weekly Abundance Event in Zul’aman with the DMF buff. Excellent video by Kaychak!
+
+-Complete the weekly Legends of the Haranir event in Harandar with the DMF buff.
+
+-Complete the weekly Stormarion Assault in the Voidstorm with the DMF buff.
+-(Optional) Kill each rare once in each zone for renown. These are a weekly lockout for each rare.
+
+-If you haven’t yet, with the DMF buff, hunt down each zone’s treasures that reward Renown. Neryssa has an excellent guide that breaks down where each zone’s treasures are.
+
+-Unlock delves to tier 8(tier 11 if available) if not done yet.
+
+-(Optional) Complete 4x Normal Prey for adventurer gear and renown.
+
+-Complete 4x Hard Prey for Veteran gear and renown.
+
+-Complete a World Tour of M0 dungeons on each character. These will drop gear at 3/6 Veteran, 240 ilvl.
+
+
+
+Pre-Season Week 2 - March 10th
+
+M0’s available at reduced item level
+
+-Do not spend any crests unless told to.
+
+-If not completed, continue to raise renown to gain champion pieces.
+
+-Complete the weekly Saltheril’s Soiree in Eversong Woods.
+
+-Complete the weekly Abundance Event in Zul’aman. Excellent video by Kaychak!
+
+-Complete the weekly Legends of the Haranir event in Harandar.
+
+-Complete the weekly Stormarion Assault in the Voidstorm.
+-(Optional) Kill each rare once in each zone for renown. These are a weekly lockout for each rare.
+
+-Unlock delves to tier 8(tier 11 if available) if not done yet.
+
+-(Optional) Complete 4x Normal Prey for adventurer gear and renown.
+
+-Complete 4x Hard Prey for Veteran gear and renown.
+
+-Complete a World Tour of M0 dungeons on each character. These will drop gear at 3/6 Veteran, 240 ilvl.
+
+-If you raid Tuesday the 17th(next section), you can craft 246 ilvl pieces in 2 slots using 80x Veteran Dawncrests each before reset. Craft in the Bracer/belt/boot type areas with 2x Embellishments for that extra power boost going into your Raid. Try not to craft in any slot that you got an M0 item in. If you don’t raid Tuesday and have time to do more M0 the next week, hold off crafting.
+
+
+Rough week 2 ending item level:
+
+4x champion 1/6 - 246 ilvl - necklace, belt, ring, and trinket from renown (if champion crests are obtainable, these will be higher)
+
+2x crafted veteran 5/6 - 246 ilvl - cloak/bracers - embellishments
+
+5x veteran 3/6 - 240 ilvl - from 2x m0 world tours - could be fewer if unlucky in m0
+
+4x veteran 2/6 - 237 ilvl - from prey - could be higher if lucky from m0
+
+
+
+Season 1 Week 1 - March 17th - Heroic Week, no M+
+
+M0’s available at full item level
+
+-Do not spend any crests unless told to.
+
+-Do LFR for tier pieces (reason here)
+
+-Complete world tour of M0’s. These items will now drop at 1/6 Champion 246 ilvl.
+
+-Complete 4x Nightmare Prey for Champion gear and renown.
+
+-Kill world boss for a 2/6 Champion 250 ilvl item.
+
+-Do PvP quest for guaranteed hero track neck or ring (don’t upgrade it). Note: this quest disappeared from the latest beta. Will update closer to release.
+
+-Do tier 8 bountiful delves with coffer keys, use map on a t8+ delve.
+
+-Before raid, craft 246 ilvl pieces in 2 slots using 80x Veteran Dawncrests each. Craft in the bracer/cloak type areas with 2x Embellishments for that extra power boost going into your Raid. Try not to craft in any slot that you got an M0 item in.
+
+-Before raid, spend all your Adventurer, Veteran, and Champion Crests upgrading everything that you possibly can. These will be worthless starting next week when you’re able to slam M+ for Heroic track items.
+
+-You can spend Heroic Crests on BIS raid trinkets using the rules below.
+
+
+Total Crests spent so far:
+
+0/100 Heroic
+
+0/100 Mythic
+
+
+Week 2 - March 24th - Mythic Week, M+
+
+(the week you should take off work)
+
+-Do not spend any crests unless told to.
+
+-If your class discord recommends it, use 1 spark to craft a Mythic Embellished item. (Dual wield classes, 1h+shield etc, armor set bonus crafters, etc). Find more info here about the two different crafting paths. Adjust advice below for having spent 80 Myth crests.
+
+-Do LFR for tier pieces (reason here)
+
+-(Optional) Kill world boss for a 2/6 Champion 250 ilvl item.
+
+-(Optional) Complete 4x Nightmare Prey for Champion gear and renown.
+
+-Do at least one t11 Delve to get the cracked keystone quest that awards 20 Heroic and Mythic crests that don’t count towards weekly cap.
+
+-Continue to spend all your Adventurer, Veteran, and Champion Crests upgrading everything that you possibly can to make keys easier.
+
+-Farm +10’s for 3/6h 266 item level pieces, vault slots and all your various Crests. If +10’s are too much of a struggle, do at least +8’s to get 2/6 hero track gear (but don’t upgrade these).
+
+-Before entering Mythic, upgrade 11 of your 3/6 266 items to 4/6 269 for 220 Hero Crests. Don’t pick slots you are likely to craft in or replace quickly. While later you’re going to be upgrading slots to 6/6 for the extra item level and potential myth crest save, distributing the upgrades this way gives roughly the same amount of power and reduces the amount of crest waste the next weeks. If you have a BIS heroic raid trinket or a very good ring that would take awhile to get replaced, you could choose to upgrade these items to 6/6 instead of distributing among other items but you will lose some stamina and primary stat this way.
+
+-If lucky enough to get a mythic item from raid, you can upgrade it all the way. If you get a 1/6 mythic track item, upgrade its heroic counterpart first to 6/6 for a free 2/6 mythic upgrade. See future weeks for info.
+
+
+Total Crests spent so far:
+
+220/220 Heroic
+
+0/220 Mythic - do not hold Mythic crests. If you have more Mythic items than predicted here, skip ahead to the next upgrade advice.
+
+
+Ending item level: 4x266, 11x269
+
+Due to randomness of vault and no guarantee for drops, your numbers can mildly fluctuate from this week to week. As long as you follow the general advice, you should be safe.
+
+
+
+Week 3 - March 31st - Final Raid opens
+
+-Open your vault for a 272+ myth track item. Weapons are a great pick up from vault. Upgrade this AFTER crafting (see instructions below).
+-Craft a 2nd embellished item or a 2-handed weapon. Check your Class Discord for more specific advice and find more info here about the two different crafting paths.
+
+-If you don’t have 4p, do LFR for tier pieces (reason here)
+-Farm +10’s for vault slots and all your various Crests.
+
+-Heroic: Upgrade 2 of your 4/6 269 items to 6/6 276 for 80 Heroic Crests. Save 20 Heroic Crests for the next step.
+
+-Mythic: If your vault item was 1/6, upgrade its heroic counterpart first to 6/6 heroic for 20 Heroic Crests. Upgrade your 1/6 272 Myth track item to 6/6 289 for 80 Myth crests.
+
+-If you have a 2nd myth track item, skip to next week’s upgrade advice for it.
+
+Total Crests spent so far:
+
+320/320 Heroic
+
+160/320 Mythic - do not hold Mythic crests. If you have more Mythic items than predicted here, skip ahead to the next upgrade advice.
+
+Ending item level: 3x266, 8x269, 2x276h, 1x285(crafted), 1x289
+
+Due to randomness of vault and no guarantee for drops, your numbers can mildly fluctuate from this week to week. As long as you follow the general advice, you should be safe.
+
+
+
+Week 4 - April 7th
+
+-Open your vault for a 272+ myth track item.
+-Farm +10’s for vault slots and all your various Crests.
+-We are going to assume that you have obtained 1 piece of Mythic loot at 2/6 276 ilvl from your first 2 raid weeks.
+
+-Heroic: Upgrade 2 of your 4/6 269 items to 6/6 276 for 80 Heroic Crests. Save 20 Heroic Crests for the next step.
+
+-Mythic: If your vault item was 1/6, upgrade its heroic counterpart first to 6/6 heroic for 20 Heroic Crests. Upgrade your 1/6 272 Myth track item to 6/6 289 for 80 Myth crests.
+
+-Mythic: Upgrade your raid drop loot from 2/6 276 myth track item to 6/6 289 for 80 Myth crests.
+
+
+Total Crests spent so far:
+
+420/420 Heroic
+
+320/420 Mythic - do not hold Mythic crests. If you have more Mythic items than predicted here, skip ahead to the next upgrade advice.
+
+Ending item level: 2x266, 5x269, 4x276h, 1x285(crafted), 3x289
+
+Due to randomness of vault and no guarantee for drops, your numbers can mildly fluctuate from this week to week. As long as you follow the general advice, you should be safe.
+
+
+
+Week 5 - April 14th
+
+-Open your vault for a 272+ myth track item.
+-Farm +10’s for vault slots and all your various Crests.
+
+-You can craft your next item at 5/6 285 mythic for 80 mythic crests. Prefer a slot you have a heroic item in if possible. If you crafted a 2h, if the equivalent of the free Enchanted Heroic Crest item from killing end boss still somehow exists, you could possibly use that to craft bracers or cloak with your 2nd embellishment at no crest cost. However, we are currently assuming this item no longer exists due to the changes in crafting. If you did not craft a 2h and currently have 2 embellished items, you should craft if you don’t have any Mythic items to upgrade. However, if you’re sitting at a bunch of Mythic items unupgraded, consider delaying this craft until you have extra Mythic crests. Find more info here about the two different crafting paths.
+
+-Heroic: Upgrade 2 of your 4/6 269 items to 6/6 276 for 80 Heroic Crests. Save 20 Heroic Crests for the next step.
+
+-Mythic: If your vault item was 1/6, upgrade its heroic counterpart first to 6/6 heroic for 20 Heroic Crests. Upgrade your 1/6 272 Myth track item to 6/6 289 for 80 Myth crests.
+
+
+Total Crests spent so far:
+
+520/520 Heroic
+
+480/520 Mythic - do not hold Mythic crests. If you have more Mythic items than predicted here, skip ahead to the next upgrade advice.
+
+Ending item level: 1x266, 2x269, 6x276h, 2x285(crafted), 4x289
+
+Due to randomness of vault and no guarantee for drops, your numbers can mildly fluctuate from this week to week. As long as you follow the general advice, you should be safe.
+
+
+
+Week 6 - April 21st - Done with Heroic Crests
+
+-Open your vault for a 272+ myth track item.
+-Farm +12’s for vault slots and all your various Crests.
+
+-We are going to assume that you have obtained 1 piece of Mythic loot at 2/6 276 ilvl from your last 2 raid weeks.
+
+-Heroic: Upgrade 1 of your 4/6 269 items to 6/6 276 for 40 Heroic Crests. You are done with Heroic Crests - congrats!
+
+-Mythic: If your vault item was 1/6, upgrade its heroic counterpart first to 6/6 heroic for 20 Heroic Crests. Upgrade your 1/6 272 Myth track item to 6/6 289 for 80 Myth crests.
+
+-Mythic: Upgrade your raid drop loot from 2/6 276 myth track item to 5/6 285 for 60 Myth crests.
+
+
+Total Crests spent so far:
+
+560/620 Heroic - Done
+
+620/620 Mythic
+
+Ending item level: 7x276h, 2x285(crafted), 1x 285, 5x289
+Due to randomness of vault and no guarantee for drops, your numbers can mildly fluctuate from this week to week. As long as you follow the general advice, you should be safe.
+
+
+
+Week 7 - April 28th on
+
+Your upgrade logic is as follows: do not craft in any slot if you have the ability to get items from your vault at higher than 1/6 mythic and you have other items to upgrade. Upgrade your Mythic items as you get them, preferring to upgrade all the way to 6/6 289 due to the +4 jump. Start planning on potentially crafting an OH at some point if you want to have a 6/6 mainhand while keeping a weapon embellishment.
+
+
+
+
+
+Changelog
+
+1/24/26 - finished for the day, will work more on it tomorrow
+
+1/25/26 - added consumables, added reputations, fixed dates, blurb about heroic crests, lots of additional info that i forgot to keep track of, cleaned up weekly stuff, updated the weapon explanation
+
+1/26/26 - forgot to include the removal of valorstones, small syntax updates, tier tokens, split raid, added suggested addons
+
+1/27/26 - added a link to doledipper’s excellent delve guide because I know nothing about delve
+
+1/28/26 - updated upgrade paragraph to be easier to read. Added multiple paragraphs to explain crest holding for people who didn’t understand what holding for 3 weeks means.
+
+1/29/26 - Dev from Refined has created an addon that automatically updates. Added link to Neryssa’s renown guide on icyveins.
+
+2/2/26 - Fixed a link
+
+2/4/26 - added dburnnzz’s cheat sheet
+
+2/6/26 - updated dburnnzz’s cheat sheet
+
+2/9/26 - added Icy-veins link for what to do before Midnight
+
+2/11/26 - Possible M0
+
+2/13/26 - New forward, reworked guide from the ground with the including of m0 and 60 cost crafts, added small tip of crest saving, added crest economy update, upgrades cost gold lmao
+
+2/18/26 - Renown updated - huge thanks to Reloe for finding this information. Small note on Nightmare Prey
+
+2/19/26 - Added info on why I’m showing m0 as available on march 3rd. Added cracked keystone quest
+
+2/20/26 - REWROTE THE FUCKING GUIDE
+
+2/21/26 - small updates to wording, added links to Neryssa’s Icy-veins Renown guides
+
+2/22/26 - added Kalamazi’s leveling tip guide. Added crafting advice.
+
+2/23/26 - Added small section about upgrading. Clarified that Path 1 was crafting a mythic weapon while path 2 was crafting armor pieces and upgrading your 3/6 heroic 2H to 6/6 heroic. Some small wording changes.
+2/25/26 - Confirmed no Raid renown. Confirmed M0 March 3rd. Greatly improved the first 3 weeks breakdown and added more information to the two crafting paths. Added prey info.
+
+2/26/26 - Early access launch day! Woo! Added a reminder to log on to each character you’re going to play so they start getting rested xp. Added multiple links to Neryssa’s midnight zone guide that has each rare and treasure located.
+
+
+
+
+If your team has a paladin named Hurv, please recruit a holy paladin so he can play more wow classic.

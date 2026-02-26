@@ -1,0 +1,29 @@
+Crest_type,iLvl,Upgrade_track,Crest_type_used,Amount
+Adventurer,220,Adventurer 1,Adventurer,20
+Adventurer,224,Adventurer 2,Adventurer,20
+Adventurer,227,Adventurer 3,Adventurer,20
+Adventurer,230,Adventurer 4,Adventurer,20
+Veteran,233,Adventurer 5,Veteran,20
+Veteran,237,Adventurer 6,Adventurer or Veteran,20
+Veteran,240,Veteran 1,Veteran,20
+Veteran,243,Veteran 2,Veteran,20
+Veteran,246,Veteran 3,Veteran,20
+Veteran,250,Veteran 4,Veteran,20
+Veteran/Champion,253,Veteran 5,Champion 1,Veteran,20
+Veteran/Champion,256,Veteran 6,Champion 2,Champion or Champion,20
+Champion,259,Champion 1,Champion 3,Champion,20
+Champion,263,Champion 2,Champion 4,Champion,20
+Champion,266,Champion 3,Champion 5,Champion or Hero,20
+Champion/Hero,269,Champion 4,Champion 6,Champion,20
+Champion/Hero,272,Champion 5,Hero 1,Hero,20
+Hero,276,Champion 6,Hero 2,Hero or Myth,20
+Hero,279,Hero 1,Hero 3,Hero,20
+Hero,282,Hero 2,Hero 4,Hero,20
+Hero,285,Hero 3,Hero 5,Hero,20
+Hero/Myth,289,Hero 4,Hero 6,Hero,20
+Hero/Myth,,Myth 1,Myth,20
+Hero/Myth,,Myth 2,Myth,20
+Hero/Myth,,Myth 3,Myth,20
+Hero/Myth,,Myth 4,Myth,20
+Hero/Myth,,Myth 5,Myth,20
+Hero/Myth,,Myth 6,Myth,20

@@ -4,7 +4,7 @@ from discord.ext import commands
 from openai import AsyncOpenAI
 
 from env import CHAT_GPT_API_KEY
-from services.chat_gpt_service import get_channel_history_by_days
+from services.chat_gpt_service import get_channel_history_by_days, retrieve_midnight_guide_context, generate_midnight_guide_response
 
 client = AsyncOpenAI(
     api_key=CHAT_GPT_API_KEY
@@ -56,6 +56,16 @@ class AI(commands.Cog):
         )
 
         await interaction.followup.send(response.choices[0].message.content.strip()[:2000])
+
+
+    @app_commands.command(
+        name='midnight_guide',
+        description='Ask the bot to give guidance based on WoW Midnight guides.'
+    )
+    async def midnight_guide(self, interaction: discord.Interaction, request: str):
+        await interaction.response.defer()
+        response = await generate_midnight_guide_response(request)
+        await interaction.followup.send(response)
 
 
 async def setup(bot):

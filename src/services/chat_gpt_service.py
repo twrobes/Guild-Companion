@@ -1,7 +1,8 @@
+import base64
+import csv
 import json
 import logging
 import os
-import random
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
@@ -15,16 +16,17 @@ from utilities.constants import MESSAGE_HISTORY_CHANNELS
 client = AsyncOpenAI(
     api_key=CHAT_GPT_API_KEY
 )
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-MESSAGE_HISTORY_FILE = BASE_DIR / "resources" / "server_atrocious_messages.txt"
-MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_2025.txt"
-MESSAGE_HISTORY_FILE_SUMMARIZED = BASE_DIR / "resources" / "server_atrocious_messages_summarized.txt"
-STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
-WORD_LIMIT = 40000
+BASE_DIR = Path(__file__).resolve().parent.parent
 MAX_DAYS = 30
 MAX_HOURS = 720
 MAX_TOTAL_HOURS = 1080
+MESSAGE_HISTORY_FILE = BASE_DIR / "resources" / "server_atrocious_messages.txt"
+MESSAGE_HISTORY_FILE_2025 = BASE_DIR / "resources" / "server_atrocious_messages_2025.txt"
+MESSAGE_HISTORY_FILE_SUMMARIZED = BASE_DIR / "resources" / "server_atrocious_messages_summarized.txt"
+MIDNIGHT_GUIDE_RESOURCES = BASE_DIR / "resources" / "midnight_raider_guide_files"
+STATE_FILE = BASE_DIR / "resources" / "last_message_ids.json"
+WORD_LIMIT = 40000
 
 
 async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
@@ -40,15 +42,14 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     # Build system prompt
     system_prompt = """
     Follow these directions:
-    - By default, give a normal response.
     - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
+    - If the questions is not about World of Warcraft, give a standard response.
     - Keep responses under 250 words.
     - Match sarcasm/memes if the user uses them.
     - Tastefully mock users when they ask something against guidelines.
     - No excessive "!" usage.
     - Never start responses with "Haha,".
     - Pick a random WoW character if asked about your origin.
-    - Be neutral/nice sometimes.
     """
 
     # Replied message text (quote)
@@ -94,12 +95,10 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             })
 
         response = await client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5.2",
             messages=[
                 {"role": "user", "content": vision_inputs}
             ],
-            temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
-            top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         )
 
         # This replaces the word "ladder" with "climbing device" from the response (for the memes)
@@ -109,12 +108,9 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
     # ======================================================
     response = await client.responses.create(
-        model="gpt-4o",
+        model="gpt-5.2",
         input=text_prompt,
-        temperature=round(max(0.0, min(2.0, random.gauss(1.0, 0.4))), 1),
-        top_p=round(max(0.0, min(1.0, random.gauss(0.5, 0.2))), 1),
         store=False,
-        tools=[{"type": "web_search_preview_2025_03_11"}]
     )
 
     # This replaces the word "ladder" with "climbing device" from the response (for the memes)
@@ -317,3 +313,91 @@ async def get_channel_history_by_days(interaction: discord.Interaction, days: in
 
 def count_words(text: str) -> int:
     return len(text.split())
+
+
+async def generate_midnight_guide_response(user_question: str):
+    guide = retrieve_midnight_guide_context()
+
+    # Prepare GPT messages
+    messages = [
+        {
+            "role": "system",
+            "content": [
+                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant."}
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": f"The user asked: {user_question}"},
+                {"type": "text", "text": f"Text Guide:\n{guide['text_guide']}"},
+                {"type": "text", "text": f"Weekly Checklist: {json.dumps(guide['checklist'], ensure_ascii=False)}"}
+            ]
+        }
+    ]
+
+    # Include item-level CSVs
+    for csv_name, rows in guide["item_levels"].items():
+        messages[1]["content"].append({
+            "type": "text",
+            "text": f"{csv_name}: {json.dumps(rows, ensure_ascii=False)}"
+        })
+
+    # Call GPT‑5.2
+    response = await client.chat.completions.create(
+        model="gpt-5.2",
+        messages=messages
+    )
+
+    return response.choices[0].message.content
+
+
+def retrieve_midnight_guide_context():
+    guide_data = {}
+
+    # Load text guide
+    txt_path = os.path.join(MIDNIGHT_GUIDE_RESOURCES, "midnight_raider_guide.txt")
+
+    if os.path.exists(txt_path):
+        with open(txt_path, "r", encoding="utf-8") as f:
+            guide_data["text_guide"] = f.read()
+    else:
+        guide_data["text_guide"] = "Guide text file not found."
+
+    # Load weekly checklist CSV
+    checklist_path = os.path.join(MIDNIGHT_GUIDE_RESOURCES, "weekly_midnight_checklist.csv")
+    checklist_items = []
+
+    if os.path.exists(checklist_path):
+        with open(checklist_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+
+            for row in reader:
+                checklist_items.append(row)
+
+    guide_data["checklist"] = checklist_items
+
+    # Load all item-level CSVs
+    item_level_csvs = [
+        "approximate_midnight_raid_item_levels.csv",
+        "crafted_item_levels.csv",
+        "dungeon_and_bountiful_delve_item_levels_combined.csv",
+        "main_upgrade_tracks_and_crest_types.csv"
+    ]
+    item_level_data = {}
+
+    for csv_file in item_level_csvs:
+        path = os.path.join(MIDNIGHT_GUIDE_RESOURCES, csv_file)
+        rows = []
+
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+
+                for row in reader:
+                    rows.append(row)
+
+        item_level_data[csv_file] = rows
+    guide_data["item_levels"] = item_level_data
+
+    return guide_data

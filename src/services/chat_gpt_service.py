@@ -1,4 +1,3 @@
-import base64
 import csv
 import json
 import logging
@@ -6,7 +5,7 @@ import os
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
-from random import random
+import random
 
 import discord
 from openai import AsyncOpenAI

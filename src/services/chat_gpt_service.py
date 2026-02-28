@@ -80,7 +80,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             image_urls.append(attachment.url)
 
     # ======================================================
-    #  IF IMAGE → USE GPT-4o VISION (chat.completions)
+    #  IF IMAGE
     # ======================================================
     if has_image:
         vision_inputs = [
@@ -105,10 +105,10 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "climbing device", response.choices[0].message.content[:2000])
 
     # ======================================================
-    #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
+    #  OTHERWISE → NORMAL TEXT MODE
     # ======================================================
     response = await client.responses.create(
-        model="gpt-5.2",
+        model="gpt-5-mini",
         input=text_prompt,
         store=False,
     )
@@ -130,7 +130,7 @@ async def summarize_file():
     )
 
     response = await client.responses.create(
-        model="gpt-5-nano",
+        model="gpt-5-mini",
         input=prompt,
         store=False,
     )

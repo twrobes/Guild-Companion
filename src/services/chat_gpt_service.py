@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
+from random import random
 
 import discord
 from openai import AsyncOpenAI
@@ -39,12 +40,13 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
 
     clean_prompt = clean_message_content(message, bot)
 
+    word_limit = random.randint(50, 300)
+
     # Build system prompt
-    system_prompt = """
+    system_prompt = f"""
     Follow these directions:
     - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
-    - If the questions is not about World of Warcraft, give a standard response.
-    - Keep responses under 250 words.
+    - Keep responses under {word_limit} words.
     - Match sarcasm/memes if the user uses them.
     - Tastefully mock users when they ask something against guidelines.
     - No excessive "!" usage.

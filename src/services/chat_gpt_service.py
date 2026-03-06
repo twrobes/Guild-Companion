@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
+import random
 
 import discord
 from openai import AsyncOpenAI
@@ -39,12 +40,13 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
 
     clean_prompt = clean_message_content(message, bot)
 
+    word_limit = random.randint(50, 300)
+
     # Build system prompt
-    system_prompt = """
+    system_prompt = f"""
     Follow these directions:
     - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
-    - If the questions is not about World of Warcraft, give a standard response.
-    - Keep responses under 250 words.
+    - Keep responses under {word_limit} words.
     - Match sarcasm/memes if the user uses them.
     - Tastefully mock users when they ask something against guidelines.
     - No excessive "!" usage.
@@ -80,7 +82,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             image_urls.append(attachment.url)
 
     # ======================================================
-    #  IF IMAGE → USE GPT-4o VISION (chat.completions)
+    #  IF IMAGE
     # ======================================================
     if has_image:
         vision_inputs = [
@@ -105,7 +107,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         return re.sub(r'(?i)l\s*a\s*d\s*d\s*e\s*r', "climbing device", response.choices[0].message.content[:2000])
 
     # ======================================================
-    #  OTHERWISE → NORMAL TEXT MODE WITH BROWSING
+    #  OTHERWISE → NORMAL TEXT MODE
     # ======================================================
     response = await client.responses.create(
         model="gpt-5.2",
@@ -130,7 +132,7 @@ async def summarize_file():
     )
 
     response = await client.responses.create(
-        model="gpt-5-nano",
+        model="gpt-5-mini",
         input=prompt,
         store=False,
     )
@@ -323,7 +325,8 @@ async def generate_midnight_guide_response(user_question: str):
         {
             "role": "system",
             "content": [
-                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant."}
+                {"type": "text", "text": "You are a World of Warcraft Midnight expansion raid guide assistant. Do not mention the file(s) you get the data from. "
+                                         "Responses must be under 1800 characters."}
             ]
         },
         {
@@ -379,10 +382,13 @@ def retrieve_midnight_guide_context():
 
     # Load all item-level CSVs
     item_level_csvs = [
-        "approximate_midnight_raid_item_levels.csv",
-        "crafted_item_levels.csv",
-        "dungeon_and_bountiful_delve_item_levels_combined.csv",
-        "main_upgrade_tracks_and_crest_types.csv"
+        "midnight_gear_data_1.csv",
+        "midnight_gear_data_2.csv",
+        "midnight_gear_data_3.csv",
+        "midnight_gear_data_4.csv",
+        "midnight_gear_data_5.csv",
+        "midnight_gear_data_6.csv",
+        "midnight_gear_data_7.csv",
     ]
     item_level_data = {}
 

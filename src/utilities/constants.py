@@ -15,6 +15,36 @@ ALLOWED_AI_CHANNELS = [
     1050057278994268205,  # raid-logs
 ]
 
+GUILD_MEMBER_NAMES = {
+    "hydro.gen": "Hydro",
+    "itzrua": "James",
+    "jevyj": "Jevan",
+    "yimyam": "Jimmy",
+    "required": "Vansz",
+    "goon84": "Aelirah",
+    "wizzode": "Arraxion",
+    "avengerx": "Uzi",
+    "foe71": "Foe",
+    "kirlani": "Kayzl",
+    "cathulhu420": "Kona",
+    "slauen": "Sean",
+    "aesunae": "Su",
+    "equix": "Veal",
+    "wtfbbqsauce": "Tinker",
+    "chadorc": "Chad",
+    "biigfoot": "Bigfoot",
+    "cozyboi": "Cozy",
+    "sebastians": "Daenehrys",
+    "knowdice": "Dice",
+    "connr": "Shmeetle",
+    "mongoosej": "Mongooze",
+    "pnugg": "Panos",
+    "1v1meirl": "Truck",
+    "t.e.a.": "Woomda",
+    "asethi": "Asethi",
+    "diodude": "Diodude"
+}
+
 MESSAGE_HISTORY_CHANNELS = [
     759837470597971998,  # wowhead
     699611111594393613,  # general

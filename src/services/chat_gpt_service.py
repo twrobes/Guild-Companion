@@ -1,4 +1,3 @@
-import base64
 import csv
 import json
 import logging
@@ -13,6 +12,7 @@ from openai import AsyncOpenAI
 
 from env import CHAT_GPT_API_KEY
 from utilities.constants import MESSAGE_HISTORY_CHANNELS
+from utilities.message_utils import get_name
 
 client = AsyncOpenAI(
     api_key=CHAT_GPT_API_KEY
@@ -39,12 +39,14 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         message_history_context = ""
 
     clean_prompt = clean_message_content(message, bot)
+    word_limit = random.randint(30, 120)
 
-    word_limit = random.randint(50, 300)
 
     # Build system prompt
     system_prompt = f"""
     Follow these directions:
+    - Your name is Jarvis.
+    - You don't need to mention who you are or your name, everyone knows.
     - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
     - Keep responses under {word_limit} words.
     - Match sarcasm/memes if the user uses them.
@@ -52,6 +54,9 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     - No excessive "!" usage.
     - Never start responses with "Haha,".
     - Pick a random WoW character if asked about your origin.
+    - Name of the person that you are talking to: {get_name(message)}.
+    - Discord username of the person you are talking to: {message.author.name}.
+    - When creating your response, be casual. Don't do stuff like 'Foe, Jarvis here' or other similar things like "Their Name," or "No, (their name)". Only use names if they naturally flow with your response.
     """
 
     # Replied message text (quote)
@@ -61,14 +66,14 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     if reply_text:
         text_prompt = (
             f"System Prompt: {system_prompt}\n"
-            f"Message History Context: {message_history_context}\n"
-            f"Quote: {reply_text}\n"
+            f"Message History Context - Don't mention you got info for your response from this context: {message_history_context}\n"
+            f"This is the message that the user is referencing: {reply_text}\n"
             f"User Prompt: {clean_prompt}"
         )
     else:
         text_prompt = (
             f"System Prompt: {system_prompt}\n"
-            f"Message History Context: {message_history_context}\n"
+            f"Message History Context - Don't mention you got info for your response from this context: {message_history_context}\n"
             f"User Prompt: {clean_prompt}"
         )
 

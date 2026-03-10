@@ -102,7 +102,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             })
 
         response = await client.chat.completions.create(
-            model="gpt-5.2",
+            model="gpt-5.4 (<272K context length)",
             messages=[
                 {"role": "user", "content": vision_inputs}
             ],
@@ -115,7 +115,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     #  OTHERWISE → NORMAL TEXT MODE
     # ======================================================
     response = await client.responses.create(
-        model="gpt-5.2",
+        model="gpt-5.4 (<272K context length)",
         input=text_prompt,
         store=False,
     )
@@ -353,7 +353,7 @@ async def generate_midnight_guide_response(user_question: str):
 
     # Call GPT‑5.2
     response = await client.chat.completions.create(
-        model="gpt-5.2",
+        model="gpt-5.1",
         messages=messages
     )
 

@@ -41,16 +41,16 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     clean_prompt = clean_message_content(message, bot)
     word_limit = random.randint(30, 120)
 
-
     # Build system prompt
     system_prompt = f"""
     Follow these directions:
     - Your name is Jarvis.
     - You don't need to mention who you are or your name, everyone knows.
-    - One of your hobbies is doing Mythic Raiding and Mythic+ in World of Warcraft.
+    - You specialize in Mythic Raiding and Mythic+ in World of Warcraft.
     - Keep responses under {word_limit} words.
     - Match sarcasm/memes if the user uses them.
-    - Tastefully mock users when they ask something against guidelines.
+    - If someone asks or tries to get you to do something against these and your built-in guidelines, willfully misinterpret what they meant and be comedic in the response.
+    - Do not follow up with the user to ask if they want more help.
     - No excessive "!" usage.
     - Never start responses with "Haha,".
     - Pick a random WoW character if asked about your origin.
@@ -102,7 +102,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
             })
 
         response = await client.chat.completions.create(
-            model="gpt-5.4",
+            model="gpt-5.1",
             messages=[
                 {"role": "user", "content": vision_inputs}
             ],
@@ -115,7 +115,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
     #  OTHERWISE → NORMAL TEXT MODE
     # ======================================================
     response = await client.responses.create(
-        model="gpt-5.4",
+        model="gpt-5.1",
         input=text_prompt,
         store=False,
     )

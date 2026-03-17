@@ -8,7 +8,7 @@ import discord
 
 from env import POSTGRESQL_SECRET
 
-BACKUP_THUMBNAIL_URL = 'https://wowvendor.com/app/uploads/2025/06/WoW-Manaforge-Omega-raid-guide.jpg'
+BACKUP_THUMBNAIL_URL = 'https://i.imgur.com/f1ALwRN.png'
 BOSS_SLUG_LIST = [
     'imperator-averzian',
     'vorasius',
@@ -22,14 +22,14 @@ BOSS_SLUG_LIST = [
 ]
 # These are in the same order is BOSS_SLUG_LIST
 BOSS_URL_LIST = [
-    'https://gamingcy.com/wp-content/uploads/2025/06/Plexus-Sentinel.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Loomithar.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Soulbinder-Naazindhri.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Forgeweaver-Araz.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/The-Soul-Hunters.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Fractillus.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Nexus-King-Salhadaar.jpg',
-    'https://gamingcy.com/wp-content/uploads/2025/06/Dimensius.jpg'
+    'https://i.imgur.com/rJdNbMq.png',
+    'https://i.imgur.com/qFZmd4f.jpeg',
+    'https://i.imgur.com/qPArLGa.jpeg',
+    'https://i.imgur.com/eCLTaUL.jpeg',
+    'https://i.imgur.com/x2OWlZI.png',
+    'https://i.imgur.com/M3js7nW.jpeg',
+    'https://i.imgur.com/QbT0495.jpeg',
+    'https://i.imgur.com/3lx6uen.jpeg'
 ]
 CURRENT_RAID_SLUG = 'tier-mn-1'
 DEFAULT_GUILD_IMAGE_URL = 'https://cdn.mos.cms.futurecdn.net/ca871592becab3977c455f6daf5cd1ca.png'

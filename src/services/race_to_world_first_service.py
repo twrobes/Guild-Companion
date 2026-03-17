@@ -10,14 +10,15 @@ from env import POSTGRESQL_SECRET
 
 BACKUP_THUMBNAIL_URL = 'https://wowvendor.com/app/uploads/2025/06/WoW-Manaforge-Omega-raid-guide.jpg'
 BOSS_SLUG_LIST = [
-    'plexus-sentinel',
-    'loomithar',
-    'soulbinder-naazindhri',
-    'forgeweaver-araz',
-    'the-soul-hunters',
-    'fractillus',
-    'nexus-king-salhadaar',
-    'dimensius'
+    'imperator-averzian',
+    'vorasius',
+    'fallenking-salhadaar',
+    'vaelgor-ezzorak',
+    'lightblinded-vanguard',
+    'crown-of-the-cosmos',
+    'chimaerus-the-undreamt-god',
+    'beloren-child-of-alar',
+    'midnight-falls'
 ]
 # These are in the same order is BOSS_SLUG_LIST
 BOSS_URL_LIST = [
@@ -30,10 +31,10 @@ BOSS_URL_LIST = [
     'https://gamingcy.com/wp-content/uploads/2025/06/Nexus-King-Salhadaar.jpg',
     'https://gamingcy.com/wp-content/uploads/2025/06/Dimensius.jpg'
 ]
-CURRENT_RAID_SLUG = 'manaforge-omega'
+CURRENT_RAID_SLUG = 'tier-mn-1'
 DEFAULT_GUILD_IMAGE_URL = 'https://cdn.mos.cms.futurecdn.net/ca871592becab3977c455f6daf5cd1ca.png'
 DIFFICULTY_LIST = ['mythic', 'heroic']
-KILL_LIMIT = 10
+KILL_LIMIT = 5
 
 
 async def retrieve_race_update(rwf_channel):
@@ -91,8 +92,18 @@ async def retrieve_race_update(rwf_channel):
                 await rwf_channel.send(embed=update_embed)
 
                 try:
-                    if difficulty == 'mythic' and update_dict["boss_name"] == "Dimensius" and update_dict["rank"] == 1:
-                        await rwf_channel.send(f'# **{update_dict["guild"]} HAS CLAIMED WORLD FIRST **\n@everyone')
+                    if difficulty == 'mythic' and update_dict["rank"] == 1:
+                        match update_dict["boss_name"]:
+                            case 'crown-of-the-cosmos':
+                                await rwf_channel.send(f'# **{update_dict["guild"]} Has claimed world first {"CROWN OF THE COSMOS"}, winning the race for The Voidspire!'
+                                                       f'**\n@here')
+                            case 'chimaerus-the-undreamt-god':
+                                await rwf_channel.send(f'# **{update_dict["guild"]} Has claimed world first {"CHIMAERUS, THE UMDREAMT GOD"}, winning the race for The Dreamrift!'
+                                                       f'**\n@here')
+                            case 'midnight-falls':
+                                await rwf_channel.send(
+                                    f"# **{update_dict["guild"]} Has claimed world first {"MIDNIGHT FALLS"}, winning the race for March on Quel'Danas and Midnight Season 1!"
+                                    f"**\n@here")
                 except Exception:
                     logging.error('An exception occurred sending the world first kill message')
 

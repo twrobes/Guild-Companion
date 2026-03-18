@@ -26,6 +26,7 @@ BOSS_URL_LIST = [
     'https://i.imgur.com/qFZmd4f.jpeg',
     'https://i.imgur.com/qPArLGa.jpeg',
     'https://i.imgur.com/eCLTaUL.jpeg',
+    'https://i.imgur.com/8g33uAo.jpeg',
     'https://i.imgur.com/x2OWlZI.png',
     'https://i.imgur.com/M3js7nW.jpeg',
     'https://i.imgur.com/QbT0495.jpeg',

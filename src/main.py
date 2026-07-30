@@ -12,6 +12,7 @@ from discord.ext import commands, tasks
 from cogs.attendance import Attendance
 from env import BOT_TOKEN, POSTGRESQL_SECRET, ATROCIOUS_ATTENDANCE_CHANNEL_ID, ATROCIOUS_GENERAL_CHANNEL_ID
 from services.chat_gpt_service import get_chat_gpt_response, scrape_server_message_history, summarize_file
+from services.on_message_service import dudes
 from services.wow_server_status_service import get_area_52_server_status_via_api, get_area_52_server_status_via_webpage
 from utilities.constants import ALLOWED_AI_CHANNELS
 
@@ -78,6 +79,9 @@ async def on_message(message):
         return
 
     message_reaction_triggered = False
+
+    if msg_lower.startswith("!dudes"):
+        await dudes(message)
 
     if 'o7' in msg_lower:
         message_reaction_triggered = True

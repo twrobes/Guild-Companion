@@ -39,7 +39,7 @@ async def get_chat_gpt_response(message: discord.Message, bot: discord.Client):
         message_history_context = ""
 
     clean_prompt = clean_message_content(message, bot)
-    word_limit = random.randint(30, 120)
+    word_limit = random.randint(100, 200)
 
     # Build system prompt
     system_prompt = f"""

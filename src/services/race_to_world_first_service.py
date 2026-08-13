@@ -8,31 +8,29 @@ import discord
 
 from env import POSTGRESQL_SECRET
 
-BACKUP_THUMBNAIL_URL = 'https://i.imgur.com/f1ALwRN.png'
+BACKUP_THUMBNAIL_URL = 'https://i.imgur.com/jU53kUv.png'
 BOSS_SLUG_LIST = [
-    'imperator-averzian',
-    'vorasius',
-    'fallenking-salhadaar',
-    'vaelgor-ezzorak',
-    'lightblinded-vanguard',
-    'crown-of-the-cosmos',
-    'chimaerus-the-undreamt-god',
-    'beloren-child-of-alar',
-    'midnight-falls'
+    'nekzali-the-soulcoiler',
+    'entombed-sentinels',
+    'vashnik-the-malignant',
+    'the-lost-explorers',
+    'sszorak',
+    'the-twin-fangs',
+    'the-coiled-altar',
+    'ulatek',
 ]
 # These are in the same order is BOSS_SLUG_LIST
 BOSS_URL_LIST = [
-    'https://i.imgur.com/rJdNbMq.png',
-    'https://i.imgur.com/qFZmd4f.jpeg',
-    'https://i.imgur.com/qPArLGa.jpeg',
-    'https://i.imgur.com/8g33uAo.jpeg',
-    'https://i.imgur.com/eCLTaUL.jpeg',
-    'https://i.imgur.com/x2OWlZI.png',
-    'https://i.imgur.com/M3js7nW.jpeg',
-    'https://i.imgur.com/QbT0495.jpeg',
-    'https://i.imgur.com/3lx6uen.jpeg'
+    'https://i.imgur.com/j9HCpbF.png',
+    'https://i.imgur.com/Ziztvf9.png',
+    'https://i.imgur.com/FIWCkoe.png',
+    'https://i.imgur.com/KdvzT9l.png',
+    'https://i.imgur.com/FRwF6WC.png',
+    'https://i.imgur.com/gWML0wX.png',
+    'https://i.imgur.com/kpILR67.png',
+    'https://i.imgur.com/mrx3cuY.png',
 ]
-CURRENT_RAID_SLUG = 'tier-mn-1'
+CURRENT_RAID_SLUG = 'the-venomous-abyss'
 DEFAULT_GUILD_IMAGE_URL = 'https://cdn.mos.cms.futurecdn.net/ca871592becab3977c455f6daf5cd1ca.png'
 DIFFICULTY_LIST = ['mythic', 'heroic']
 KILL_LIMIT = 5

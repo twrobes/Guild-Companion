@@ -56,6 +56,9 @@ async def retrieve_race_update(rwf_channel):
 
                 if update_dict == 'kill_limit':
                     continue
+
+                if update_dict == 'attempt_only':
+                    continue
             elif boss_rankings is None:
                 logging.error(f'JSON response was none. JSON content: {boss_rankings}')
             elif 400 <= response.status < 500:
@@ -93,15 +96,9 @@ async def retrieve_race_update(rwf_channel):
                 try:
                     if difficulty == 'mythic' and update_dict["rank"] == 1:
                         match update_dict["boss_name"]:
-                            case 'crown-of-the-cosmos':
-                                await rwf_channel.send(f'# **{update_dict["guild"]} Has claimed world first {"CROWN OF THE COSMOS"}, winning the race for The Voidspire!'
-                                                       f'**\n@here')
-                            case 'chimaerus-the-undreamt-god':
-                                await rwf_channel.send(f'# **{update_dict["guild"]} Has claimed world first {"CHIMAERUS, THE UMDREAMT GOD"}, winning the race for The Dreamrift!'
-                                                       f'**\n@here')
-                            case 'midnight-falls':
+                            case 'ulatek':
                                 await rwf_channel.send(
-                                    f"# **{update_dict['guild']} Has claimed world first {'MIDNIGHT FALLS'}, winning the race for March on Quel'Danas and Midnight Season 1!"
+                                    f"# **{update_dict['guild']} Has claimed world first {"ULA'TEK"}, winning the race for March on Quel'Danas and Midnight Season 1!"
                                     f"**\n@here")
                 except Exception:
                     logging.error('An exception occurred sending the world first kill message')
@@ -126,6 +123,12 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
         return None
     elif len(boss_rankings_json) <= boss_kills:
         return None
+
+    try:
+        if boss_rankings_json['isAttemptOnly']:
+            return None
+    except KeyError:
+        logging.warning('isAttemptOnly key not found in rwf tracker json')
 
     boss_kills += 1
 

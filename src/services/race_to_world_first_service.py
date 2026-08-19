@@ -98,7 +98,7 @@ async def retrieve_race_update(rwf_channel):
                         match update_dict["boss_name"]:
                             case 'ulatek':
                                 await rwf_channel.send(
-                                    f"# **{update_dict['guild']} Has claimed world first {"ULA'TEK"}, winning the race for March on Quel'Danas and Midnight Season 1!"
+                                    f"# **{update_dict['guild']} Has claimed world first ULA'TEK, winning the race for March on Quel'Danas and Midnight Season 1!"
                                     f"**\n@here")
                 except Exception:
                     logging.error('An exception occurred sending the world first kill message')

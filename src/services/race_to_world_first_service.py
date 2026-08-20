@@ -125,7 +125,7 @@ async def get_update_dict(boss_slug: str, boss_rankings_json: dict, difficulty: 
         return None
 
     try:
-        if boss_rankings_json['isAttemptOnly']:
+        if boss_rankings_json[boss_kills]['isAttemptOnly']:
             return None
     except KeyError:
         logging.warning('isAttemptOnly key not found in rwf tracker json')

@@ -79,7 +79,7 @@ class Admin(commands.GroupCog, name='admin'):
 
         await interaction.response.send_message(f'Mythic Plus Leaderboard tracker {action_str} successfully.')
 
-    @tasks.loop(seconds=60)
+    @tasks.loop(seconds=90)
     async def rwf_tracker_loop(self):
         rwf_channel = self.bot.get_channel(RWF_CHANNEL_ID)
         await retrieve_race_update(rwf_channel)

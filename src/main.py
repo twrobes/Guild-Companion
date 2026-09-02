@@ -249,7 +249,7 @@ async def remove_past_absences():
     try:
         delete_record_query = """DELETE FROM attendance WHERE absence_date < ($1)"""
         await conn.execute(delete_record_query, corrected_cst_datetime)
-        logging.info('Removed past absence records successfully')
+        logging.info('Removed past attendance records successfully')
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(e)
         await conn.close()
@@ -258,7 +258,7 @@ async def remove_past_absences():
     try:
         delete_record_query = """DELETE FROM vacation WHERE end_date < ($1)"""
         await conn.execute(delete_record_query, corrected_cst_datetime)
-        logging.info('Removed past absence records successfully')
+        logging.info('Removed past vacation records successfully')
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(e)
         await conn.close()

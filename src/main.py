@@ -234,8 +234,7 @@ async def check_and_update_bot_attendance_msg():
     message = messages[0]
 
     if message.author.id != bot.user.id:
-        attendance = Attendance(bot)
-        await attendance.update_absences_table()
+        await Attendance(bot).update_absences_table()
 
 
 @tasks.loop(hours=24)
@@ -262,6 +261,8 @@ async def remove_past_absences():
     except (Exception, asyncpg.PostgresError) as e:
         logging.error(e)
         await conn.close()
+
+    await Attendance(bot).update_absences_table()
 
 
 async def main():

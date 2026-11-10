@@ -59,10 +59,10 @@ async def cleanup_channel(channel: discord.TextChannel):
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
-    check_and_update_bot_attendance_msg.start()
-    remove_past_absences.start()
+    # check_and_update_bot_attendance_msg.start()
+    # remove_past_absences.start()
     update_bot_status.start()
-    vault_cleanup.start()
+    # vault_cleanup.start()
 
 
 async def load():
